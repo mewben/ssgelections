@@ -1,0 +1,27 @@
+{
+  "name": "ssgelections",
+  "version": "1.0.0",
+  "description": "Student Government Elections System",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mewben/ssgelections.git"
+  },
+  "keywords": [
+    "vote",
+    "election",
+    "student"
+  ],
+  "author": "Melvin Soldia",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/mewben/ssgelections/issues"
+  },
+  "devDependencies": {
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-cssmin": "~0.7.0"
+  }
+}

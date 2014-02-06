@@ -11,6 +11,25 @@
 |
 */
 
+Route::get('/test', function() {
+	if (App::environment('production')) 	return Redirect::to('/admin');
+
+	Confide::logout();
+	Session::flush();
+	Auth::loginUsingId(1);
+	//Iss\Session::get();
+	return Redirect::to('/admin');
+});
+
+Route::get('/admin/{path?}', array('before' => 'auth', function ($path = null) {
+
+	//$session = Iss\Session::get();
+	$session = null;
+	return View::make('layouts.admin', compact('session'));
+
+}))->where('path', '.*');
+
+
 Route::get('/', function()
 {
 	return View::make('hello');

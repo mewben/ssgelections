@@ -2,8 +2,9 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Zizaco\Confide\ConfideUser;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends ConfideUser implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
@@ -18,6 +19,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password');
+	protected $softDelete = true;
+	public static $rules = [
+		'username' => 'required',
+		'email' => 'required',
+		'password' => 'required'
+	];
+
+	public function roles()
+	{
+		return $this->belongsToMany('Role', 'assigned_roles');
+	}
 
 	/**
 	 * Get the unique identifier for the user.
