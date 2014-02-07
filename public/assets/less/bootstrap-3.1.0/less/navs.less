@@ -82,9 +82,12 @@
 
     // Actual tabs (as links)
     > a {
+      color: @nav-tabs-active-link-hover-color;
       margin-right: 2px;
+      padding: 30px 30px 20px;
+      background-color: darken(@body-bg, 5%);
       line-height: @line-height-base;
-      border: 1px solid transparent;
+      border: 1px solid @nav-tabs-active-link-hover-border-color;
       border-radius: @border-radius-base @border-radius-base 0 0;
       &:hover {
         border-color: @nav-tabs-link-hover-border-color @nav-tabs-link-hover-border-color @nav-tabs-border-color;
@@ -121,6 +124,11 @@
     // Links rendered as pills
     > a {
       border-radius: @nav-pills-border-radius;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 20px 40px;
+      background-color: #eee;
     }
     + li {
       margin-left: 2px;

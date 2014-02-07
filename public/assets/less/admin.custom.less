@@ -5,24 +5,48 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: "Lato", Arial, sans-serif !important;
 }
 h1, h2, h3, h4, h5, h6 {font-weight: 200;}
+
 #menu {
 	position:fixed;
 	width: 160px;
-	top: 71px;
+	top: 0;
 	bottom: 0;
 	overflow-y: auto;
 	left: 160px;
 	margin-left: -160px;
 	background-color: #262a33;
 
-	.nav {
+	.nav, .nav.sub {
 		margin-top: 0;
+
+		li.active a {
+			background-color: rgba(0,0,0,0.8);
+			color: #fff;
+
+			&:after {
+				border-right: 10px solid @body-bg;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				content: "";
+				position: absolute;
+				right: 0;
+				top: 35%;
+				height: 0;
+				width: 0;
+				vertical-align: middle;
+				
+				-webkit-transition: color 0.1s linear;
+				-moz-transition: color 0.1s linear;
+				-o-transition: color 0.1s linear;
+				  transition: color 0.1s linear; 
+			}
+		}
 
 		a {
 			color: rgba(255, 255, 255, 0.3);
 			text-transform: uppercase;
 			font-size: 11px;
-			padding: 15px;
+			padding: 16px;
 
 			&:hover,
       		&:focus {
@@ -30,8 +54,29 @@ h1, h2, h3, h4, h5, h6 {font-weight: 200;}
 				color:#fff;
       		}
 		}
+		a.logo {
+			background-color: #FFB979;
+			color: #fff;
+		}
 	}
 }
 #main {
 	padding-left: 160px;
+
+	.content {
+		padding: 20px;
+
+		h1.head {margin-top: 0}
+	}
+}
+
+.no-style {
+	&,
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		border: none;
+		border-bottom: 1px solid darken(@body-bg, 15%);
+		box-shadow: none;
+	}
 }

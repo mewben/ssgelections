@@ -20,17 +20,23 @@
 	</head>
 	<body data-ng-cloak>
 		<div id="wrap">
-			<!-- Navbar -->
-			<div class="navbar navbar-inverse navbar-static-top" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<i class="icon list"></i>
-					</button>
-
+			<div id="menu">
+				<div class="menu-open text-center">
+					<ul class="nav">
+						<li><a href="/admin" target="_self" class="logo"><i class="fa fa-archive fa-3x"></i> <h4>SSG Elections</h4></a></li>
+					</ul>
+					<ul class="nav side">
+						<li><a href="#"><i class="fa fa-sitemap fa-2x"></i> <div>Candidates</div></a></li>
+						<li><a href="#"><i class="fa fa-users fa-2x"></i> <div>Voters</div></a></li>
+						<li class="active"><a href="#"><i class="fa fa-briefcase fa-2x"></i> <div>Manage</div></a></li>
+						<li><a href="#"><i class="fa fa-bar-chart-o fa-2x"></i> <div>Results</div></a></li>
+						<li><a href="#"><i class="fa fa-cog fa-2x"></i> <div>Settings</div></a></li>
+					</ul>
 				</div>
-				<a href="/admin" target="_self" class="navbar-brand">SSG Elections <i class="fa fa-archive fa-lg"></i></a>
-				<div class="collapse navbar-collapse">
+			</div> <!-- /#menu -->
+			<div id="main">
+				<!-- Navbar -->
+				<div class="navbar navbar-inverse navbar-static-top" role="navigation">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#"><i class="fa fa-bookmark fa-fw fa-2x"></i> Main Campus | SY: 2013-2014 Sem: 2</a></li>
 						<li class="dropdown">
@@ -43,21 +49,85 @@
 							</ul>
 						</li>
 					</ul>
-				</div>
-			</div> <!-- /.navbar -->
-			<div id="menu">
-				<div class="menu-open text-center">
-					<ul class="nav">
-						<li><a href="#"><i class="fa fa-sitemap fa-2x"></i> <div>Candidates</div></a></li>
-						<li><a href="#"><i class="fa fa-users fa-2x"></i> <div>Voters</div></a></li>
-						<li><a href="#"><i class="fa fa-briefcase fa-2x"></i> <div>Manage</div></a></li>
-						<li><a href="#"><i class="fa fa-bar-chart-o fa-2x"></i> <div>Results</div></a></li>
-						<li><a href="#"><i class="fa fa-cog fa-2x"></i> <div>Settings</div></a></li>
+				</div> <!-- /.navbar -->
+				<div class="navbar navbar-default text-center navbar-static-top" role="navigation">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="#">
+								<i class="fa fa-fw fa-2x fa-building-o"></i><div>Campuses</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-fw fa-2x fa-wrench"></i><div>Semesters</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-fw fa-2x fa-wheelchair"></i><div>Positions</div>
+							</a>
+						</li>
 					</ul>
 				</div>
-			</div> <!-- /#menu -->
-			<div id="main">
-				<h1><i class="fa fa-briefcase"></i> Manage</h1>
+				<div class="content">
+					<div class="page-header">
+						<div class="row">
+							<div class="col-md-4">
+									<h2><i class="fa fa-fw fa-building-o"></i> Campuses <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button></h2>
+							</div>
+							<div class="col-md-8 text-right">
+								<div>
+									<form class="form-inline" role="form">
+										<div class="form-group">
+											<i class="fa fa-fw fa-search"></i>
+											<input type="text" class="form-control no-style" placeholder="Search List ...">
+										</div>
+										<div class="form-group">
+											<div class="btn-group">
+												<button type="button" class="btn btn-link active">ACTIVE</button>
+												<button type="button" class="btn btn-link">BLOCKED</button>
+												<button type="button" class="btn btn-link">TRASHED</button>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="btn-group">
+												<button type="button" class="btn btn-info"><i class="fa fa-chevron-left"></i></button>
+												<button type="button" class="btn btn-info">0/0</button>
+												<button type="button" class="btn btn-info"><i class="fa fa-chevron-right"></i></button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-content">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Address</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1.</td>
+									<td>Main Campus</td>
+									<td>CPG. Ave. Tagbilaran City, Bohol</td>
+									<td>
+										<button type="button" class="btn btn-info btn-sm">Edit</button>
+										<button type="button" class="btn btn-danger btn-sm">Delete</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
 			</div> <!-- /#main -->
 		</div>
 
@@ -68,6 +138,7 @@
 
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/transition.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/dropdown.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/collapse.js') ?>
 		<?php endif; ?>
 	</body>
 </html>
