@@ -153,9 +153,11 @@
 .navbar-brand {
   float: left;
   padding: @navbar-padding-vertical @navbar-padding-horizontal;
-  font-size: @font-size-large;
+  font-size: 15px; // @font-size-large;
   line-height: @line-height-computed;
-  height: @line-height-computed;
+  height: 100%;
+  width: 160px;
+  background-color: @navbar-inverse-border;
 
   &:hover,
   &:focus {
@@ -256,13 +258,13 @@
     > li {
       float: left;
       > a {
-        padding-top:    @navbar-padding-vertical;
-        padding-bottom: @navbar-padding-vertical;
+        padding-top:    21px; //@navbar-padding-vertical;
+        padding-bottom: 20px; //@navbar-padding-vertical;
       }
     }
 
     &.navbar-right:last-child {
-      margin-right: -@navbar-padding-horizontal;
+      margin-right: 0; // -@navbar-padding-horizontal;
     }
   }
 }

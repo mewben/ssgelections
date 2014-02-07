@@ -20,6 +20,16 @@ module.exports = function(grunt) {
 					keepSpecialComments: 0
 				}
 			}
+		},
+
+		watch: {
+			assets: {
+				files: [
+					"public/assets/less/**/*.less",
+					"public/assets/js/**/*.js"
+				],
+				tasks: ['less:dev']
+			}
 		}
 
 
@@ -27,6 +37,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	grunt.registerTask('default', [
 		'less:dev',

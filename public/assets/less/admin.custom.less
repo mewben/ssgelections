@@ -4,25 +4,34 @@ input,
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Lato", Arial, sans-serif !important;
 }
+h1, h2, h3, h4, h5, h6 {font-weight: 200;}
+#menu {
+	position:fixed;
+	width: 160px;
+	top: 71px;
+	bottom: 0;
+	overflow-y: auto;
+	left: 160px;
+	margin-left: -160px;
+	background-color: #262a33;
 
-.navbar.navbar-inverse {
-	background-color: @brand-info;
-	border-color: none;
-}
-.navbar-inverse .navbar-nav > li > a,
-.navbar-inverse .navbar-brand,
-.navbar-inverse .navbar-text {color: #555;}
+	.nav {
+		margin-top: 0;
 
-.navbar-brand {
-	line-height: 40px;
-	width: 200px;
-	background-color: rgba(0,0,0,0.1);
-	height: 100%;
+		a {
+			color: rgba(255, 255, 255, 0.3);
+			text-transform: uppercase;
+			font-size: 11px;
+			padding: 15px;
+
+			&:hover,
+      		&:focus {
+				background-color: rgba(255, 255, 255, 0.1);
+				color:#fff;
+      		}
+		}
+	}
 }
-.navbar-brand:hover {
-	background-color: rgba(0,0,0,0.2) !important;
-}
-.navbar-nav > li > a,
-.navbar-nav .navbar-text {
-	line-height: 40px;
+#main {
+	padding-left: 160px;
 }
