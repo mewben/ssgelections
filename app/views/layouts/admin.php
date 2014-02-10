@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="iss" data-ng-controller="AdminCtrl">
+<html lang="en" data-ng-app="ssg" data-ng-controller="AdminCtrl">
 	<head>
 		<meta charset="utf-8">
 		<title>SSGElections &middot; Bohol Island State University</title>
@@ -25,10 +25,10 @@
 					<ul class="nav">
 						<li><a href="/admin" target="_self" class="logo"><i class="fa fa-archive fa-3x"></i> <h4>SSG Elections</h4></a></li>
 					</ul>
-					<ul class="nav side">
+					<ul class="nav side" data-nav-menu2>
 						<li><a href="#"><i class="fa fa-sitemap fa-2x"></i> <div>Candidates</div></a></li>
 						<li><a href="#"><i class="fa fa-users fa-2x"></i> <div>Voters</div></a></li>
-						<li class="active"><a href="#"><i class="fa fa-briefcase fa-2x"></i> <div>Manage</div></a></li>
+						<li><a href="/admin/manage/campuses"><i class="fa fa-briefcase fa-2x"></i> <div>Manage</div></a></li>
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-2x"></i> <div>Results</div></a></li>
 						<li><a href="#"><i class="fa fa-cog fa-2x"></i> <div>Settings</div></a></li>
 					</ul>
@@ -50,91 +50,24 @@
 						</li>
 					</ul>
 				</div> <!-- /.navbar -->
-				<div class="navbar navbar-default text-center navbar-static-top" role="navigation">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#">
-								<i class="fa fa-fw fa-2x fa-building-o"></i><div>Campuses</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-fw fa-2x fa-wrench"></i><div>Semesters</div>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-fw fa-2x fa-wheelchair"></i><div>Positions</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="content">
-					<div class="page-header">
-						<div class="row">
-							<div class="col-md-4">
-									<h2><i class="fa fa-fw fa-building-o"></i> Campuses <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button></h2>
-							</div>
-							<div class="col-md-8 text-right">
-								<div>
-									<form class="form-inline" role="form">
-										<div class="form-group">
-											<i class="fa fa-fw fa-search"></i>
-											<input type="text" class="form-control no-style" placeholder="Search List ...">
-										</div>
-										<div class="form-group">
-											<div class="btn-group">
-												<button type="button" class="btn btn-link active">ACTIVE</button>
-												<button type="button" class="btn btn-link">BLOCKED</button>
-												<button type="button" class="btn btn-link">TRASHED</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="btn-group">
-												<button type="button" class="btn btn-info"><i class="fa fa-chevron-left"></i></button>
-												<button type="button" class="btn btn-info">0/0</button>
-												<button type="button" class="btn btn-info"><i class="fa fa-chevron-right"></i></button>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="tab-content">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>Address</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1.</td>
-									<td>Main Campus</td>
-									<td>CPG. Ave. Tagbilaran City, Bohol</td>
-									<td>
-										<button type="button" class="btn btn-info btn-sm">Edit</button>
-										<button type="button" class="btn btn-danger btn-sm">Delete</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-
-					</div>
-				</div>
+				<div data-ng-view></div>
 
 			</div> <!-- /#main -->
 		</div>
 
 		<?php if (App::environment('production')) : ?>
+			<?php echo HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') ?>
 
 		<?php else: ?>
 			<?php echo HTML::script('assets/js/jquery-2.0.3.min.js') ?>
+			<?php echo HTML::script('assets/js/angular-1.2.12/angular.js') ?>
+			<?php echo HTML::script('assets/js/angular-1.2.12/angular-route.js') ?>
+			<?php echo HTML::script('assets/js/angular-1.2.12/angular-resource.js') ?>
+
+			<?php echo HTML::script('ang/app.js') ?>
+			<?php echo HTML::script('ang/controllers.js') ?>
+			<?php echo HTML::script('ang/directives.js') ?>
+
 
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/transition.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/dropdown.js') ?>

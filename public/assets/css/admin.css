@@ -2030,8 +2030,8 @@ fieldset[disabled] .btn {
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #ffffff;
-  background-color: #1f1f1f;
+  color: #333333;
+  background-color: #ebebeb;
   border-color: #adadad;
 }
 .btn-default:active,
@@ -3652,11 +3652,14 @@ h6 {
 #main .content h1.head {
   margin-top: 0;
 }
-.no-style,
-.no-style:hover,
-.no-style:focus {
+.no-style {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #ced4d4;
   box-shadow: none;
+}
+.no-style:hover,
+.no-style:focus {
+  box-shadow: none;
+  border-bottom: 1px solid #45c8dc;
 }

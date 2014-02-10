@@ -1,0 +1,67 @@
+<div data-ng-include="'/ang/partials/admin/manage.html'"></div>
+
+<ul class="nav side" data-nav-menu>
+						<li><a href="#"><i class="fa fa-sitemap fa-2x"></i> <div>Candidates</div></a></li>
+						<li><a href="#"><i class="fa fa-users fa-2x"></i> <div>Voters</div></a></li>
+						<li><a href="/admin/manage/campuses"><i class="fa fa-briefcase fa-2x"></i> <div>Manage</div></a></li>
+						<li><a href="#"><i class="fa fa-bar-chart-o fa-2x"></i> <div>Results</div></a></li>
+						<li><a href="#"><i class="fa fa-cog fa-2x"></i> <div>Settings</div></a></li>
+					</ul>
+
+<div class="content">
+	<div class="page-header">
+		<div class="row">
+			<div class="col-md-4">
+					<h2><i class="fa fa-fw fa-building-o"></i> Campuses <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button></h2>
+			</div>
+			<div class="col-md-8 text-right">
+				<h2>
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<i class="fa fa-fw fa-search"></i>
+							<input type="text" class="form-control no-style" placeholder="Search List ...">
+						</div>
+						<div class="form-group">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default active">ACTIVE</button>
+								<button type="button" class="btn btn-default">BLOCKED</button>
+								<button type="button" class="btn btn-default">TRASHED</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default"><i class="fa fa-chevron-left"></i></button>
+								<button type="button" class="btn btn-default">0/0</button>
+								<button type="button" class="btn btn-default"><i class="fa fa-chevron-right"></i></button>
+							</div>
+						</div>
+					</form>
+				</h2>
+			</div>
+		</div>
+	</div>
+	
+	<div class="tab-content">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1.</td>
+					<td>Main Campus</td>
+					<td>CPG. Ave. Tagbilaran City, Bohol</td>
+					<td>
+						<button type="button" class="btn btn-info btn-sm">Edit</button>
+						<button type="button" class="btn btn-danger btn-sm">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
