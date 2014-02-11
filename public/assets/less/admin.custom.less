@@ -82,3 +82,42 @@ h1, h2, h3, h4, h5, h6 {font-weight: 200;}
 		border-bottom: 1px solid @brand-primary;
 	}
 }
+
+/* Spin */
+
+@-moz-keyframes spin {
+    0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(359deg); }
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(359deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+
+.animate.spin {
+	background: url("../images/sprite.png") no-repeat scroll 0 -32px rgba(0,0,0,0);
+	background-size: 32px auto;
+	display:inline-block;
+	vertical-align: middle;
+	height: 32px;
+	width: 32px;
+	-moz-animation: spin 1s infinite linear;
+    -webkit-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
+}
+.required {color: red;}
+.content-data {position:relative;}
+.cover {
+	position:absolute;
+	background-color:@body-bg;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+}

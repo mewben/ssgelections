@@ -11,20 +11,31 @@
 |
 */
 
+Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
+
+	Route::resource('campuses', 'CampusesController');
+	Route::resource('candidates', 'CandidatesController');
+	Route::resource('colleges', 'CollegesController');
+	Route::resource('partylists', 'PartylistsController');
+	Route::resource('positions', 'PositionsController');
+	Route::resource('semesters', 'SemestersController');
+
+});
+
 Route::get('/test', function() {
 	if (App::environment('production')) 	return Redirect::to('/admin');
 
 	Confide::logout();
 	Session::flush();
 	Auth::loginUsingId(1);
-	//Iss\Session::get();
+	Utility::getSession();
 	return Redirect::to('/admin');
 });
 
 Route::get('/admin/{path?}', array('before' => 'auth', function ($path = null) {
 
 	//$session = Iss\Session::get();
-	$session = null;
+	$session = Session::get('user');
 	return View::make('layouts.admin', compact('session'));
 
 }))->where('path', '.*');

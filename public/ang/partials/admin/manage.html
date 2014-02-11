@@ -1,19 +1,9 @@
-
 <div class="navbar navbar-default text-center navbar-static-top" role="navigation">
-	<ul class="nav navbar-nav" data-nav-menu>
-		<li>
-			<a href="/admin/manage/campuses">
-				<i class="fa fa-fw fa-2x fa-building-o"></i><div>Campuses</div>
-			</a>
-		</li>
-		<li>
-			<a href="/admin/manage/semesters">
-				<i class="fa fa-fw fa-2x fa-wrench"></i><div>Semesters</div>
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<i class="fa fa-fw fa-2x fa-wheelchair"></i><div>Positions</div>
+	<ul class="nav navbar-nav">
+		<li data-ng-repeat="m in menu.manage.sub" data-ng-class="{active: isActive('{{m.url}}')}">
+			<a data-ng-href="{{m.url}}">
+				<i class="fa fa-fw fa-2x {{m.icon}}"></i>
+				<div>{{m.title}}</div>
 			</a>
 		</li>
 	</ul>

@@ -25,12 +25,15 @@
 					<ul class="nav">
 						<li><a href="/admin" target="_self" class="logo"><i class="fa fa-archive fa-3x"></i> <h4>SSG Elections</h4></a></li>
 					</ul>
-					<ul class="nav side" data-nav-menu2>
-						<li><a href="#"><i class="fa fa-sitemap fa-2x"></i> <div>Candidates</div></a></li>
-						<li><a href="#"><i class="fa fa-users fa-2x"></i> <div>Voters</div></a></li>
-						<li><a href="/admin/manage/campuses"><i class="fa fa-briefcase fa-2x"></i> <div>Manage</div></a></li>
-						<li><a href="#"><i class="fa fa-bar-chart-o fa-2x"></i> <div>Results</div></a></li>
-						<li><a href="#"><i class="fa fa-cog fa-2x"></i> <div>Settings</div></a></li>
+					<ul class="nav side">
+						<?php foreach($session['menu'] as $key => $menu): ?>
+							<li data-ng-class="{active: isActive('<?php echo $menu['baseurl'] ?>')}">
+								<a href="<?php echo $menu['url'] ?>">
+									<i class="fa fa-2x <?php echo $menu['icon'] ?>"></i>
+									<div><?php echo $key ?></div>
+								</a>
+							</li>
+						<?php endforeach ?>
 					</ul>
 				</div>
 			</div> <!-- /#menu -->
@@ -51,6 +54,9 @@
 					</ul>
 				</div> <!-- /.navbar -->
 				<div data-ng-view></div>
+				<pre>
+					<?php print_r($session); ?>
+				</pre>
 
 			</div> <!-- /#main -->
 		</div>
@@ -64,7 +70,12 @@
 			<?php echo HTML::script('assets/js/angular-1.2.12/angular-route.js') ?>
 			<?php echo HTML::script('assets/js/angular-1.2.12/angular-resource.js') ?>
 
+			<?php echo HTML::script('assets/js/toastr.min.js') ?>
+
+			<?php echo HTML::script('ang/init.js') ?>
 			<?php echo HTML::script('ang/app.js') ?>
+			<?php echo HTML::script('ang/services/api.js') ?>
+			<?php echo HTML::script('ang/services/notify.js') ?>
 			<?php echo HTML::script('ang/controllers.js') ?>
 			<?php echo HTML::script('ang/directives.js') ?>
 
@@ -72,6 +83,13 @@
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/transition.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/dropdown.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/collapse.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/modal.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
 		<?php endif; ?>
+
+		<script>
+			window.menu = <?php echo json_encode($session['menu']) ?>;
+			angular.module('ssg').constant('CSRF_TOKEN', '<?php echo csrf_token() ?>');
+		</script>
 	</body>
 </html>

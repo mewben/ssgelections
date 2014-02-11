@@ -46,9 +46,34 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
+App::error(function(Illuminate\Database\QueryException $exception, $code)
+{
+	/*switch ($exception->getCode()) {
+		case 23505:
+			return Response::json('Database error! The input you entered already exists in the database.', 400);
+			break;
+		case 23503:
+			return Response::json('Database error! You cannot delete this item as it is used in another table.', 400);
+			break;
+		default:
+			return Response::json("Database error! Error code: " . $exception->getCode(), 400);
+			break;
+	}*/
+});
+
+
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+	if ($code == 404) {
+		return Response::json('Resource not found.', $code);
+	} elseif (gettype( $r = json_decode($exception->getMessage()) )  === 'object') {
+		return Response::json($r, 400);
+	} elseif ($exception->getCode() == 409) {
+		return Response::json($exception->getMessage(), 400);
+	} else {
+		//Log::error($exception);
+		//return Response::json($exception->getMessage(), 500);
+	}
 });
 
 /*
