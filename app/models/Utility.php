@@ -27,6 +27,31 @@ class Utility extends BaseModel {
 		return Session::get('user');
 	}
 
+	public static function setSession($data)
+	{
+		// change campus
+		if (isset($data['campus_id_g'])) {
+			if (!$campus = Campus::whereNull('status')->findOrFail($data['campus_id_g']))	throw new Exception('Campus not found.');
+
+			Session::put('user.campus', $campus->toArray());
+		}
+
+		// change semester
+		if (isset($data['sy_g']) AND isset($data['sem_g'])) {
+			if (!$sem = Semester::where('sy', '=', $data['sy_g'])
+							->where('sem', '=', $data['sem_g'])
+							->where('campus_id', '=', Session::get('user.campus.id'))
+							->whereNull('status')
+							->first()
+				)
+				Session::put('user.sem', NULL);
+			else
+				Session::put('user.sem', $sem->toArray());
+		}
+
+		return true;
+	}
+
 	public static function getMenu()
 	{
 		$min = App::environment('dev') ? 'partials' : 'partials-min';
@@ -42,6 +67,8 @@ class Utility extends BaseModel {
 			'voters' => [
 				'url' => '/admin/voters',
 				'baseurl' => '/admin/voters',
+				'ctrl' => 'VoterCtrl',
+				'temp' => "/ang/{$min}/admin/voters.html",
 				'icon' => 'fa-users'
 			],
 			'manage' => [

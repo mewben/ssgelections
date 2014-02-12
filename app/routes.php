@@ -20,6 +20,8 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 	Route::resource('positions', 'PositionsController');
 	Route::resource('semesters', 'SemestersController');
 
+	Route::post('sessions', 'BaseController@setSession');
+
 });
 
 Route::get('/test', function() {

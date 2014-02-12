@@ -41,7 +41,33 @@
 				<!-- Navbar -->
 				<div class="navbar navbar-inverse navbar-static-top" role="navigation">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#"><i class="fa fa-bookmark fa-fw fa-2x"></i> Main Campus | SY: 2013-2014 Sem: 2</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-bookmark fa-fw fa-2x"></i> <?php echo $session['campus']['name'] ?>| SY: <?php echo isset($session['sem']['sy']) ? $session['sem']['sy'] . "-" . (($session['sem']['sy'] - 0) + 1) : "No semester" ?> Sem: <?php echo isset($session['sem']['sem']) ? $session['sem']['sem'] : "0" ?>
+								<span class="caret"></span>
+							</a>
+							<?php echo Form::open(['url' => '/api/v1/sessions', 'method' => 'post', 'role' => 'form', 'class' => 'dropdown-menu form']) ?>
+								<?php if(isset($session['campuses'])) : ?>
+								<div class="form-group">
+									<?php echo Form::select('campus_id_g', $session['campuses'], $session['campus']['id'], array('class'=>'form-control', 'autocomplete'=>'off')) ?>
+								</div>
+								<?php endif ?>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-xs-8">
+											<div class="input-group">
+												<input type="text" id="sy_g" name="sy_g" data-ng-model="sy_g" class="form-control" maxlength="4" placeholder="SY" required>
+												<span class="input-group-addon">{{ (sy_g - 0) + 1 }}</span>
+											</div>
+										</div>
+										<div class="col-xs-4">
+											<input type="text" class="form-control" name="sem_g" data-ng-model="sem_g" placeholder="Sem" maxlength="1" required>
+										</div>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary btn-block btn-sm"><i class="fa fa-fw fa-check"></i> Change</button>
+							<?php echo Form::close() ?>
+						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-fw fa-2x"></i> username <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -54,9 +80,6 @@
 					</ul>
 				</div> <!-- /.navbar -->
 				<div data-ng-view></div>
-				<pre>
-					<?php print_r($session); ?>
-				</pre>
 
 			</div> <!-- /#main -->
 		</div>
@@ -89,6 +112,8 @@
 
 		<script>
 			window.menu = <?php echo json_encode($session['menu']) ?>;
+			window.sy_g = <?php echo isset($session['sem']['sy']) ? $session['sem']['sy'] : '""' ?>;
+			window.sem_g = <?php echo isset($session['sem']['sem']) ? $session['sem']['sem'] : '""' ?>;
 			angular.module('ssg').constant('CSRF_TOKEN', '<?php echo csrf_token() ?>');
 		</script>
 	</body>

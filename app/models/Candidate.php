@@ -4,7 +4,7 @@ class Candidate extends BaseModel {
 
 	protected $table = 'candidates';
 	protected $softDelete = true;
-	protected $fillable = ['name', 'position_id', 'partylist_id', 'campus_id', 'status'];
+	protected $fillable = ['name', 'position_id', 'partylist_id', 'sem_id', 'status'];
 	public $timestamps = false;
 
 	public static $rules = [
@@ -26,13 +26,15 @@ class Candidate extends BaseModel {
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)
 	{
 		$with = ['position', 'partylist'];
-		$where = [['campus_id', '=', Session::get('user.campus.id')]];
+		$where = [['sem_id', '=', Session::get('user.sem.id')]];
 		return parent::fetch($filters, $with, $where);
 	}
 
 	public function store($data, $id = NULL)
 	{
-		$data['campus_id'] = Session::get('user.campus.id');
+		if (!Session::has('user.sem.id'))	throw new Exception("No semester code selected above. Please select semester.", 409);
+		$data['sem_id'] = Session::get('user.sem.id');
+
 		return parent::store($data, $id);
 	}
 

@@ -12,6 +12,7 @@
 3. Install "zizaco/confide": "3.1.x"
 4. Create migrations
 5. Create Routes
+6. Segregate Data by semester code
 
 
 ### DEVELOPMENT NOTES:

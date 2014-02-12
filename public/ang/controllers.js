@@ -11,6 +11,8 @@ angular.module('ssg')
 
 			// initialize item every page
 			$rootScope.menu = window.menu;
+			$rootScope.sy_g = window.sy_g;
+			$rootScope.sem_g = window.sem_g;
 			$rootScope.item = {};
 			$rootScope.itemParams = angular.extend({
 				filter: 'active'
@@ -168,6 +170,17 @@ angular.module('ssg')
 				$location.search(params);
 				$rootScope.query();
 			}, true);
+
+		}
+	])
+
+	.controller('VoterCtrl', [
+		'$rootScope',
+		'$scope',
+		'$location',
+		function($rootScope, $scope, $location) {
+			$rootScope.table = 'voters';
+
 
 		}
 	]);

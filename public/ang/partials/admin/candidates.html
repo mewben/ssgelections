@@ -82,18 +82,24 @@
 				</div>
 				<div class="form-group">
 					<label for="position_id" class="col-sm-3 control-label">Running for position <span class="required">*</span></label>
-					<div class="col-sm-9">
+					<div class="col-sm-7">
 						<select name="position_id" id="position_id" class="form-control" data-ng-model="item.position_id" required>
 							<option data-ng-repeat="p in positions.data" value="{{p.id}}">{{p.code}}</option>
 						</select>
 					</div>
+					<div class="col-sm-2">
+						<a class="btn btn-warning" href="/admin/manage/positions" target="_blank" data-tooltip="tooltip" title="Add Positions"><i class="fa fa-wheelchair"></i></a>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="partylist_id" class="col-sm-3 control-label">Party List <span class="required">*</span></label>
-					<div class="col-sm-9">
+					<div class="col-sm-7">
 						<select name="partylist_id" id="partylist_id" class="form-control" data-ng-model="item.partylist_id" required>
 							<option data-ng-repeat="pl in partylists.data" value="{{pl.id}}">{{pl.code}} - {{pl.name}}</option>
 						</select>
+					</div>
+					<div class="col-sm-2">
+						<a class="btn btn-warning" href="/admin/manage/party-lists" target="_blank" data-tooltip="tooltip" title="Add Party Lists"><i class="fa fa-list-alt"></i></a>
 					</div>
 				</div>
 				<div class="form-group">
