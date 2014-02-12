@@ -24,6 +24,13 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 
 });
 
+Route::post('/import', function() {
+	$m = Excel::load(Input::file('file')->toArray());
+	print_r($m);
+	dd();
+	//Excel::load()
+});
+
 Route::get('/test', function() {
 	if (App::environment('production')) 	return Redirect::to('/admin');
 

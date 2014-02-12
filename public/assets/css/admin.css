@@ -2888,9 +2888,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 1.42857143;
   border: 1px solid #dddddd;
   border-radius: 2px 2px 0 0;
+  outline: none;
 }
 .nav-tabs > li > a:hover {
   border-color: #eeeeee #eeeeee #dddddd;
+  outline: none;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
@@ -2944,6 +2946,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .nav-tabs.nav-justified > .active > a:focus {
     border-bottom-color: #f7f8f8;
   }
+}
+.tab-content {
+  border: 1px solid #dddddd;
+  border-top: none;
+  padding: 20px;
 }
 .nav-pills > li {
   float: left;
@@ -4088,11 +4095,13 @@ a {
   text-transform: uppercase;
   font-size: 11px;
   padding: 16px;
+  outline: none;
 }
 #menu .nav a:hover,
 #menu .nav a:focus {
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
+  outline: none;
 }
 #menu .nav a.logo {
   background-color: #FFB979;

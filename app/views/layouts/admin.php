@@ -108,6 +108,7 @@
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/collapse.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/modal.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tab.js') ?>
 		<?php endif; ?>
 
 		<script>

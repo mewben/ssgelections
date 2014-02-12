@@ -89,8 +89,10 @@
       line-height: @line-height-base;
       border: 1px solid @nav-tabs-active-link-hover-border-color;
       border-radius: @border-radius-base @border-radius-base 0 0;
+      outline:none;
       &:hover {
         border-color: @nav-tabs-link-hover-border-color @nav-tabs-link-hover-border-color @nav-tabs-border-color;
+        outline:none;
       }
     }
 
@@ -114,6 +116,11 @@
   }
 }
 
+.tab-content {
+  border: 1px solid @nav-tabs-active-link-hover-border-color;
+  border-top:none;
+  padding: 20px;
+}
 
 // Pills
 // -------------------------

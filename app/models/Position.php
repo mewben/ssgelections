@@ -26,6 +26,7 @@ class Position extends BaseModel {
 
 	public function store($data, $id = NULL)
 	{
+		if(isset($data['order']) AND $data['order'] == '')	$data['order'] = NULL;
 		$data['campus_id'] = Session::get('user.campus.id');
 		return parent::store($data, $id);
 	}
