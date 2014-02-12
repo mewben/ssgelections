@@ -35,14 +35,14 @@
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="import">
-					<form class="form-inline" role="form" action="/import" method="POST" enctype="multipart/form-data">
+					<form class="form-inline" name="importForm" role="form" action="/import" method="POST" enctype="multipart/form-data">
 						<div class="form-group">
-							<input type="file" name="file">
+							<input type="file" name="file" data-ng-model="item.file" required>
 							Import csv file
-							<span class="required">Warning! All voters will be deleted first before importing.</span>
+							<div class="required">Warning! All voters will be deleted first before importing.</div>
 						</div>
 						<div class="form-actions">
-							<button type="submit" class="btn btn-primary">Import</button>
+							<button type="submit" class="btn btn-primary" data-ng-disabled="!importForm.$valid">Import</button>
 						</div>
 					</form>
 				</div>

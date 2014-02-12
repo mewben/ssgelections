@@ -25,7 +25,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 });
 
 Route::post('/import', function() {
-	$m = Excel::load(Input::file('file')->toArray());
+	$m = Excel::load(Input::file('file')->getRealPath())->toArray();
 	print_r($m);
 	dd();
 	//Excel::load()
