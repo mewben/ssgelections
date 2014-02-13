@@ -63,7 +63,16 @@ return array(
 			'prefix'    => '',
 		),
 
-		'pgsql' => $_ENV['pgsql'],
+		'pgsql' => array(
+			'driver'   => 'pgsql',
+			'host'     => 'localhost',
+			'database' => $_ENV['dbname'],
+			'username' => $_ENV['dbuser'],
+			'password' => $_ENV['dbpass'],
+			'charset'  => 'utf8',
+			'prefix'   => $_ENV['dbprefix'],
+			'schema'   => $_ENV['dbschema']
+		),
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',

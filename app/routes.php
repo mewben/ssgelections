@@ -20,8 +20,8 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 	Route::resource('positions', 'PositionsController');
 	Route::resource('semesters', 'SemestersController');
 
-	Route::post('sessions', 'BaseController@setSession');
-
+	Route::post('sessions', 'UtilityController@setSession');
+	Route::post('import', 'UtilityController@import');
 });
 
 Route::post('/import', function() {
@@ -29,6 +29,28 @@ Route::post('/import', function() {
 	print_r($m);
 	dd();
 	//Excel::load()
+});
+
+Route::get('test2', function() {
+
+	$colleges = [];
+
+	if(!array_key_exists('CEA', $colleges)) echo "NONE";
+	//print_r($d);
+	dd();
+
+	$m = (new College)->store(['code' => 'Test Code', 'name' => 'Test College']);
+	print_r($m);
+	dd();
+	if(!$college_id = College::where('code', '=', 'CTE')->get(array('id'))->toArray())
+		echo "NONE";
+	print_r($college_id);
+	dd();
+
+	$data = ['1'=>'CEA', '4'=>'CTAS'];
+
+	$d = array_search('CBAS', $data);
+	var_dump($d);
 });
 
 Route::get('/test', function() {

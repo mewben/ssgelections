@@ -12,6 +12,11 @@ class Position extends BaseModel {
 		'name' => 'required'
 	];
 
+	public function setCodeAttribute($value)
+	{
+		$this->attributes['code'] = strtoupper($value);
+	}
+
 	public function college()
 	{
 		return $this->belongsTo('College');

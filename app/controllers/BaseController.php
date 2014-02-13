@@ -62,9 +62,4 @@ class BaseController extends Controller {
 		return Response::json($this->model->remove($id, Input::get('force')), 200);
 	}
 
-	public function setSession()
-	{
-		Utility::setSession(Input::all());
-		return Redirect::intended('/admin');
-	}
 }

@@ -80,7 +80,6 @@
 					</ul>
 				</div> <!-- /.navbar -->
 				<div data-ng-view></div>
-
 			</div> <!-- /#main -->
 		</div>
 
@@ -110,6 +109,18 @@
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tab.js') ?>
 		<?php endif; ?>
+
+		<?php if(Session::has('errors')) : ?>
+			<script>
+				toastr.error('<ul>' + "<?php echo Session::get('errors') ?>" + '</ul>', 'Something went wrong!');
+			</script>
+		<?php endif ?>
+
+		<?php if(Session::has('info')) : ?>
+			<script>
+				toastr.success('<ul>' + "<?php echo Session::get('info') ?>" + '</ul>', 'Success!');
+			</script>
+		<?php endif ?>
 
 		<script>
 			window.menu = <?php echo json_encode($session['menu']) ?>;

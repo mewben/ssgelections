@@ -12,6 +12,11 @@ class College extends BaseModel {
 		'name' => 'required'
 	];
 
+	public function setCodeAttribute($value)
+	{
+		$this->attributes['code'] = strtoupper($value);
+	}
+
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)
 	{
 		$where = [['campus_id', '=', Session::get('user.campus.id')]];
