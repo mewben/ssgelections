@@ -22,6 +22,7 @@ class CreateVotersTable extends Migration {
 			$table->smallInteger('year');
 			$table->integer('sem_id')->unsigned();
 			$table->boolean('voted')->nullable();
+			$table->string('passcode')->nullable();
 
 			$table->timestamps();
 

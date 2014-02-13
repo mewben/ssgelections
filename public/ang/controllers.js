@@ -177,10 +177,19 @@ angular.module('ssg')
 	.controller('VoterCtrl', [
 		'$rootScope',
 		'$scope',
-		'$location',
-		function($rootScope, $scope, $location) {
+		'Api',
+		'Notify',
+		function($rootScope, $scope, Api, Notify) {
 			$rootScope.table = 'voters';
 
+			$scope.generate = function() {
+				$('#btn-generate').attr('disabled', true);
+				// generate
+				Api($rootScope.table).save({generate: 1}, function (result) {
+					Notify.successCallback("Pass Codes generated successfully!");
+					$('#btn-generate').attr('disabled', false);
+				}, Notify.errorCallback);
+			};
 
 		}
 	]);

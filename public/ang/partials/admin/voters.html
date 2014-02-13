@@ -1,7 +1,6 @@
 <div class="graph">
 	<h2>
 		<i class="fa fa-fw fa-users"></i> Voters
-		<span class="load animate spin" data-loading></span>
 	</h2>
 	<div class="text-center">
 		<div class="box">
@@ -28,13 +27,13 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#import" data-toggle="tab"><i class="fa fa-fw fa-level-down"></i>Import Voters</a></li>
-				<li><a href="#export" data-toggle="tab"><i class="fa fa-fw fa-barcode"></i>Export Voters</a></li>
+			<ul class="nav nav-tabs" id="votersTab">
+				<li><a href="#import" data-toggle="tab"><i class="fa fa-fw fa-level-down"></i>Import Voters</a></li>
 				<li><a href="#generate" data-toggle="tab"><i class="fa fa-fw fa-magic"></i>Generate Pass Codes</a></li>
+				<li><a href="#export" data-toggle="tab"><i class="fa fa-fw fa-barcode"></i>Export Voters</a></li>
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane fade in active" id="import">
+				<div class="tab-pane fade" id="import">
 					<form class="form-horizontal" name="importForm" role="form" action="/api/v1/import" method="POST" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="file" class="col-sm-3 control-label">Import CSV file <span class="required">*</span></label>
@@ -58,11 +57,67 @@
 							</div>
 						</div>
 					</form>
+					<hr>
+					<h4>Guide for the CSV file:</h4>
+					<div class="row">
+						<div class="col-sm-3">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th width="10%">Column</th>
+										<th>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>A</td>
+										<td>ID Number</td>
+									</tr>
+									<tr>
+										<td>B</td>
+										<td>Last Name</td>
+									</tr>
+									<tr>
+										<td>C</td>
+										<td>First Name</td>
+									</tr>
+									<tr>
+										<td>D</td>
+										<td>Middle Name</td>
+									</tr>
+									<tr>
+										<td>E</td>
+										<td>College Code</td>
+									</tr>
+									<tr>
+										<td>F</td>
+										<td>Year Level</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+				</div>
+				<div class="tab-pane fade" id="generate">
+					<div class="text-center">
+						<button class="btn btn-primary btn-lg" id="btn-generate" data-ng-click="generate()"><i class="fa fa-credit-card fa-fw fa-3x"></i><div>Generate Pass Codes</div>
+							<span class="load animate spin" data-loading></span>
+						</button>
+						<p class="text-muted">This generates the voters random pass codes used in logging in the system.</p>
+					</div>
 				</div>
 				<div class="tab-pane fade" id="export">PROFILE</div>
-				<div class="tab-pane fade" id="generate">MESSAGES</div>
 			</div>
 		</div>
 	</div>
 
 </div>
+
+<script>
+	$(function() {
+		// on load of the page: switch to the currently selected tab
+		var hash = window.location.hash || '#import';
+		$('#votersTab a[href="' + hash + '"]').tab('show');
+	});
+</script>

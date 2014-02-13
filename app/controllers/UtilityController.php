@@ -15,8 +15,17 @@ class UtilityController extends BaseController {
 		} catch (Exception $e) {
 			return Redirect::to('/admin/voters')->with('errors', 'Database error! Check your data.');
 		}
-		
+
 		Session::flash('info', "Import successful!");
 		return Redirect::to('/admin/voters');
+	}
+
+	public function store()
+	{
+		if (Input::get('generate')) { // generate pass Codes
+			Voter::generate();
+		}
+
+		return Response::json('1', 200);
 	}
 }

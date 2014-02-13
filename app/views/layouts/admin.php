@@ -94,6 +94,14 @@
 
 			<?php echo HTML::script('assets/js/toastr.min.js') ?>
 
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/transition.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/dropdown.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/collapse.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/modal.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tab.js') ?>
+			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/button.js') ?>
+
 			<?php echo HTML::script('ang/init.js') ?>
 			<?php echo HTML::script('ang/app.js') ?>
 			<?php echo HTML::script('ang/services/api.js') ?>
@@ -102,12 +110,6 @@
 			<?php echo HTML::script('ang/directives.js') ?>
 
 
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/transition.js') ?>
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/dropdown.js') ?>
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/collapse.js') ?>
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/modal.js') ?>
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tab.js') ?>
 		<?php endif; ?>
 
 		<?php if(Session::has('errors')) : ?>
