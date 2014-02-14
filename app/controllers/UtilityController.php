@@ -28,4 +28,16 @@ class UtilityController extends BaseController {
 
 		return Response::json('1', 200);
 	}
+
+	public function export()
+	{
+		return Voter::export();
+	}
+
+	public function count()
+	{
+		if(Input::get('count')) {
+			return Voter::count();
+		}
+	}
 }

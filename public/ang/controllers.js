@@ -182,6 +182,10 @@ angular.module('ssg')
 		function($rootScope, $scope, Api, Notify) {
 			$rootScope.table = 'voters';
 
+			Api('voters').query({count: 1}, function(result) {
+				$scope.count = result;
+			}, Notify.errorCallback);
+
 			$scope.generate = function() {
 				$('#btn-generate').attr('disabled', true);
 				// generate

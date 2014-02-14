@@ -4,11 +4,11 @@
 	</h2>
 	<div class="text-center">
 		<div class="box">
-			<div class="circle">2453</div><br>
+			<div class="circle">{{ count.total }}</div><br>
 			<p class="text-muted">Total Voters</p>
 		</div>
 		<div class="box">
-			<div class="circle">0</div><br>
+			<div class="circle">{{ count.voted }}</div><br>
 			<p class="text-muted">Voted</p>
 		</div>
 	</div>
@@ -107,7 +107,14 @@
 						<p class="text-muted">This generates the voters random pass codes used in logging in the system.</p>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="export">PROFILE</div>
+				<div class="tab-pane fade" id="export">
+					<div class="text-center">
+						<a href="/api/v1/export" target="_blank" class="btn btn-warning btn-lg" id="btn-export" data-ng-click="export()"><i class="fa fa-table fa-fw fa-3x"></i><div>Export to Excel</div>
+							<span class="load animate spin" data-loading></span>
+						</a>
+						<p class="text-muted">This generates the official list of voters which can be printed.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
