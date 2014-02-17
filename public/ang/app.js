@@ -1,6 +1,7 @@
 angular.module('ssg', [
 	'ngRoute',
-	'ngResource'
+	'ngResource',
+	'ui.select2'
 ])
 	.config([
 		'$httpProvider',

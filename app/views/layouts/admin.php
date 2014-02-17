@@ -92,6 +92,9 @@
 			<?php echo HTML::script('assets/js/angular-1.2.12/angular-route.js') ?>
 			<?php echo HTML::script('assets/js/angular-1.2.12/angular-resource.js') ?>
 
+			<?php echo HTML::script('assets/js/angular-select2.js') ?>
+			<?php echo HTML::script('assets/js/select2.min.js') ?>
+
 			<?php echo HTML::script('assets/js/toastr.min.js') ?>
 
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/transition.js') ?>

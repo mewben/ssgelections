@@ -31,7 +31,17 @@ class UtilityController extends BaseController {
 
 	public function export()
 	{
-		return Voter::export();
+		$data = Voter::getAll();
+
+		return Voter::export($data);
+	}
+
+	public function printVoters()
+	{
+		$data = Voter::getAll();
+		$session = Session::get('user');
+
+		return View::make('print.voters', compact('data', 'session'));
 	}
 
 	public function count()

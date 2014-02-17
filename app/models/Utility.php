@@ -105,11 +105,18 @@ class Utility extends BaseModel {
 						'icon' => 'fa-wheelchair'
 					],
 					[
-						'title' => 'Party Lists',
-						'url' => '/admin/manage/party-lists',
-						'ctrl' => 'PartyListCtrl',
-						'temp' => "/ang/{$min}/admin/manage.partylists.html",
+						'title' => 'Party',
+						'url' => '/admin/manage/party',
+						'ctrl' => 'PartyCtrl',
+						'temp' => "/ang/{$min}/admin/manage.party.html",
 						'icon' => 'fa-list-alt'
+					],
+					[
+						'title' => 'Admin Users',
+						'url' => '/admin/manage/users',
+						'ctrl' => 'UserCtrl',
+						'temp' => "/ang/{$min}/admin/manage.users.html",
+						'icon' => 'fa-user'
 					]
 				]
 			],
@@ -127,4 +134,5 @@ class Utility extends BaseModel {
 
 		return $menu;
 	}
+	
 }

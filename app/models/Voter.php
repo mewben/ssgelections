@@ -19,6 +19,13 @@ class Voter extends BaseModel {
 		return $this->belongsTo('College');
 	}
 
+	public static function getAll()
+	{
+		if (!Session::has('user.sem.id'))	throw new Exception("No semester code selected.", 409);
+
+		return static::with('college')->where('sem_id', '=', Session::get('user.sem.id'))->orderBy('college_id')->orderBy('lname')->get()->toArray();
+	}
+
 	public static function import()
 	{
 		if (!Session::has('user.sem.id'))	throw new Exception("No semester code selected.", 409);
@@ -76,20 +83,16 @@ class Voter extends BaseModel {
 		return true;
 	}
 
-	public static function export()
+	public static function export($data)
 	{
-		if (!Session::has('user.sem.id'))	throw new Exception("No semester code selected.", 409);
+		$obj = Excel::create('VotersList')->sheet('Sheet 1');
 
-		$obj = Excel::load(public_path() . '/assets/templates/voterslist.xls');
+		$obj->excel->getActiveSheet()->setCellValue('A1', Session::get('user.campus.name'));
+		$obj->excel->getActiveSheet()->setCellValue('A2', Session::get('user.campus.address'));
+		$obj->excel->getActiveSheet()->setCellValue('A3', 'S.Y.' . Session::get('user.sem.sy') . '-' . (Session::get('user.sem.sy') + 1) . ' SEM:' . Session::get('user.sem.sem'));
+		$obj->excel->getActiveSheet()->setCellValue('A4', 'Total Items: '. count($data));
 
-		$data = static::with('college')->where('sem_id', '=', Session::get('user.sem.id'))->orderBy('college_id')->orderBy('lname')->get()->toArray();
-
-		$obj->excel->getActiveSheet()->setCellValue('A3', Session::get('user.campus.name'));
-		$obj->excel->getActiveSheet()->setCellValue('A4', Session::get('user.campus.address'));
-		$obj->excel->getActiveSheet()->setCellValue('A7', 'S.Y.' . Session::get('user.sem.sy') . '-' . (Session::get('user.sem.sy') + 1) . ' SEM:' . Session::get('user.sem.sem'));
-		$obj->excel->getActiveSheet()->setCellValue('J8', 'ÑTotal Items: '. count($data));
-
-		$baseRow = 10;
+		$baseRow = 6;
 		foreach ($data as $key => $value) {
 			$row = $baseRow + $key;
 			$fullName = $value['lname'] . ', ' . $value['fname'] . ', ' . $value['mname'];

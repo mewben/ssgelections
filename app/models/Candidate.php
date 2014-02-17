@@ -4,13 +4,13 @@ class Candidate extends BaseModel {
 
 	protected $table = 'candidates';
 	protected $softDelete = true;
-	protected $fillable = ['name', 'position_id', 'partylist_id', 'sem_id', 'status'];
+	protected $fillable = ['name', 'position_id', 'party_id', 'sem_id', 'status'];
 	public $timestamps = false;
 
 	public static $rules = [
 		'name' => 'required|max:255',
 		'position_id' => 'required',
-		'partylist_id' => 'required'
+		'party_id' => 'required'
 	];
 
 	public function position()
@@ -18,14 +18,14 @@ class Candidate extends BaseModel {
 		return $this->belongsTo('Position');
 	}
 
-	public function partylist()
+	public function party()
 	{
-		return $this->belongsTo('Partylist');
+		return $this->belongsTo('Party');
 	}
 
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)
 	{
-		$with = ['position', 'partylist'];
+		$with = ['position', 'party'];
 		$where = [['sem_id', '=', Session::get('user.sem.id')]];
 		return parent::fetch($filters, $with, $where);
 	}

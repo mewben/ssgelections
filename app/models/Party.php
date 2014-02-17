@@ -1,8 +1,8 @@
 <?php
 
-class Partylist extends BaseModel {
+class Party extends BaseModel {
 
-	protected $table = 'partylists';
+	protected $table = 'party';
 	protected $softDelete = true;
 	protected $fillable = ['code', 'name', 'status', 'campus_id'];
 	public $timestamps = false;

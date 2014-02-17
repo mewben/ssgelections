@@ -16,15 +16,18 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 	Route::resource('campuses', 'CampusesController');
 	Route::resource('candidates', 'CandidatesController');
 	Route::resource('colleges', 'CollegesController');
-	Route::resource('partylists', 'PartylistsController');
+	Route::resource('party', 'PartyController');
 	Route::resource('positions', 'PositionsController');
+	Route::resource('roles', 'RolesController');
 	Route::resource('semesters', 'SemestersController');
+	Route::resource('users', 'UsersController');
 
 	Route::post('sessions', 'UtilityController@setSession');
 	Route::post('import', 'UtilityController@import');
 	Route::post('voters', 'UtilityController@store');
 	Route::get('voters', 'UtilityController@count');
 	Route::get('export', 'UtilityController@export');
+	Route::get('print', 'UtilityController@printVoters');
 });
 
 Route::post('/import', function() {

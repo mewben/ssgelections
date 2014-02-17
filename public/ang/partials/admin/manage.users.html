@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-4">
 					<h2>
-						<i class="fa fa-fw fa-list-alt"></i> Party Lists
+						<i class="fa fa-fw fa-user"></i> Admin Users
 						<button type="button" data-ng-click="showAdd()" class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button>
 						<span class="load animate spin" data-loading></span>
 					</h2>
@@ -42,16 +42,22 @@
 			<thead>
 				<tr>
 					<th width="2%">#</th>
-					<th>Code</th>
-					<th>Name</th>
+					<th>Username</th>
+					<th>Email Address</th>
+					<th>Role</th>
 					<th width="16%">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr data-ng-repeat="i in items.data | orderBy:'name' | filter:search">
+				<tr data-ng-repeat="i in items.data | orderBy:'username' | filter:search">
 					<td>{{$index + 1}}.</td>
-					<td><strong>{{i.code}}</strong></td>
-					<td>{{i.name}}</td>
+					<td><strong>{{i.username}}</strong></td>
+						<td>{{i.email}}</td>
+						<td>
+							<span data-ng-repeat="r in i.roles">
+								<label class="label label-warning">{{r.name}}</label>
+							</span>
+						</td>
 					<td>
 						<button type="button" class="btn btn-info btn-sm" data-ng-click="editItem(i)" data-ng-hide="itemParams.filter=='trashed'">Edit</button>
 						<button type="button" class="btn btn-danger btn-sm" data-ng-click="deleteItem(i.id)" data-ng-hide="itemParams.filter=='trashed'">Delete</button>
@@ -71,30 +77,44 @@
 		<form class="modal-content form-horizontal" data-ng-submit="addItem()" role="form" name="crud">
 			<div class="modal-header">
 				<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Party List</h4>
+				<h4 class="modal-title">User Credentials</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="code" class="col-sm-3 control-label">Code <span class="required">*</span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="code" placeholder="Code" data-ng-model="item.code" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="name" class="col-sm-3 control-label">Name <span class="required">*</span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="item.name" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" data-ng-model="item.status" data-ng-true-value="blocked">Disable party list
-							</label>
-						</div>
-					</div>
-				</div>
+      			<label for="username" class="col-sm-3 control-label">Username <span class="required">*</span></label>
+      			<div class="col-sm-9">
+      				<input type="text" id="username" placeholder="Username" data-ng-model="item.username" class="form-control" required>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="email" class="col-sm-3 control-label">Email Address <span class="required">*</span></label>
+      			<div class="col-sm-9">
+      				<input type="email" id="email" placeholder="Email Address" data-ng-model="item.email" class="form-control" required>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="password" class="col-sm-3 control-label">Password <span class="required">*</span></label>
+      			<div class="col-sm-9">
+      				<input type="password" id="password" placeholder="Password" data-ng-model="item.password" class="form-control">
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<label for="roles" class="col-sm-3 control-label">Roles <span class="required">*</span></label>
+      			<div class="col-sm-9">
+      				<select data-placeholder="Choose role/roles" ui-select2 class="chosen-select form-control" data-ng-model="item.roles" multiple required>
+      					<option data-ng-repeat="r in roles.data" value="{{r.id}}">{{r.name}}</option>
+      				</select>
+      			</div>
+      		</div>
+      		<div class="form-group">
+      			<div class="col-sm-offset-3 col-sm-9">
+		      		<div class="checkbox">
+			      		<label>
+			      			<input id="blocked" data-ng-model="item.status" data-ng-true-value="blocked" type="checkbox">Disable user
+			      		</label>
+			      	</div>
+      			</div>
+      		</div>
 			</div>
 			<div class="modal-footer">
 				<span class="load animate spin" data-loading></span>

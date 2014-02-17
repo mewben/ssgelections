@@ -110,7 +110,7 @@ angular.module('ssg')
 			}, true);
 
 			$scope.positions = $rootScope.get('positions');
-			$scope.partylists = $rootScope.get('partylists');
+			$scope.party = $rootScope.get('party');
 		}
 	])
 
@@ -129,12 +129,12 @@ angular.module('ssg')
 		}
 	])
 
-	.controller('PartyListCtrl', [
+	.controller('PartyCtrl', [
 		'$rootScope',
 		'$scope',
 		'$location',
 		function($rootScope, $scope, $location) {
-			$rootScope.table = 'partylists';
+			$rootScope.table = 'party';
 
 			$scope.$watchCollection('itemParams', function (params) {
 				$location.search(params);
@@ -171,6 +171,30 @@ angular.module('ssg')
 				$rootScope.query();
 			}, true);
 
+		}
+	])
+
+	.controller('UserCtrl', [
+		'$rootScope',
+		'$scope',
+		'$location',
+		function($rootScope, $scope, $location) {
+			$rootScope.table = 'users';
+
+			$scope.$watchCollection('itemParams', function (params) {
+				$location.search(params);
+				$rootScope.query();
+			}, true);
+
+			$scope.roles = $rootScope.get('roles');
+
+			$scope.editItem = function(item) {
+				$rootScope.item = angular.copy(item);
+				$.each($rootScope.item.roles, function(i, val) {
+					$rootScope.item.roles[i] = val.id;
+				});
+				$('#crud').modal();
+			};
 		}
 	])
 

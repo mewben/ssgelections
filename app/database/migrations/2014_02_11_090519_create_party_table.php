@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartylistsTable extends Migration {
+class CreatePartyTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePartylistsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('partylists', function(Blueprint $table)
+		Schema::create('party', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('code');
@@ -35,11 +35,11 @@ class CreatePartylistsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('partylists', function(Blueprint $table) {
-            $table->dropForeign('partylists_campus_id_foreign');
+		Schema::table('party', function(Blueprint $table) {
+            $table->dropForeign('party_campus_id_foreign');
         });
 
-		Schema::drop('partylists');
+		Schema::drop('party');
 	}
 
 }
