@@ -125,10 +125,12 @@ class Utility extends BaseModel {
 				'baseurl' => '/admin/results',
 				'icon' => 'fa-bar-chart-o'
 			],
-			'settings' => [
-				'url' => '/admin/settings',
-				'baseurl' => '/admin/settings',
-				'icon' => 'fa-cog'
+			'election' => [
+				'url' => '/admin/election',
+				'baseurl' => '/admin/election',
+				'icon' => 'fa-flag-checkered',
+				'ctrl' => 'ElectionCtrl',
+				'temp' => "/ang/{$min}/admin/elections.html"
 			]
 		];
 

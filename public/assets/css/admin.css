@@ -4219,6 +4219,64 @@ a {
   position: relative;
   text-transform: uppercase;
 }
+.steps a {
+  cursor: pointer;
+  padding: 20px 20px 20px 45px;
+  margin-right: 5px;
+  background-color: #f4f6f6;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.steps a.disabled,
+.steps a[disabled] {
+  color: #ced4d4;
+  cursor: default;
+}
+.steps a:before {
+  width: 0;
+  height: 0;
+  border-top: 30px inset transparent;
+  border-bottom: 30px inset transparent;
+  border-left: 20px solid #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+.steps a:after {
+  width: 0;
+  height: 0;
+  border-top: 30px inset transparent;
+  border-bottom: 30px inset transparent;
+  border-left: 20px solid #f4f6f6;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: -20px;
+  z-index: 2;
+}
+.steps a:last-child:after,
+.steps a:first-child:before {
+  border: none;
+}
+.steps a:first-child {
+  padding-left: 15px;
+  border-radius: 4px 0 0 4px;
+}
+.steps a:last-child {
+  border-radius: 0 4px 4px 0;
+  padding-right: 50px;
+}
+.steps a.current,
+.steps a.current:hover {
+  background-color: #45c8dc;
+  color: #fff;
+}
+.steps a.current:after,
+.steps a.current:hover:after {
+  border-left-color: #45c8dc;
+}
 /*
 Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
 */

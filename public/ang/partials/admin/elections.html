@@ -1,0 +1,58 @@
+<div class="graph">
+	<h2>
+		<i class="fa fa-fw fa-flag-checkered"></i> Election Proper
+	</h2>
+	<hr>
+	<div>
+		<div class="steps">
+		    <a data-ng-class="{current: steps==undefined}" data-ng-click="steps = undefined">Open Voting</a>
+		    <a data-ng-class="{current: steps=='initialize'}" data-ng-click="steps = 'initialize'" data-ng-disabled="steps==undefined">Initialize Vote Counters</a>
+		    <a data-ng-class="{current: steps=='finish'}" data-ng-click="steps = 'finish'" data-ng-disabled="steps==undefined||steps=='initialize'">Finish</a>
+		</div>
+	</div>
+
+	<div class="switch-container" data-ng-switch on="steps">
+		<div data-ng-switch-default>
+			<h2>Open Voting</h2>
+			<div class="row">
+				<div class="col-sm-4">
+					<p>Enter admin password to unlock open voting.</p>
+					<input type="password" class="form-control" placeholder="Enter admin password" data-ng-model="item.password">
+					<hr>
+					<div class="text-right">
+						<span class="load animate spin" data-loading></span>
+						<button class="btn btn-primary btn-lg" data-ng-click="checkLogin()">Next Step <i class="fa fa-chevron-right"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-ng-switch-when="initialize">
+			<h2>Initialize Vote Counters</h2>
+			<button class="btn btn-lg btn-primary">Re-zero & Initialize</button>
+			<span class="load animate spin" data-loading></span>
+			<p class="text-muted">This resets the vote counters to zero and prepares all the necessary data for voting.</p>
+			<h2>&nbsp;</h2>
+			<a href="/api/v1/print?w=initial" class="btn btn-lg btn-warning"><i class="fa fa-print fa-fw fa-2x"></i>Print Initialization Report</a>
+			<div class="row">
+				<div class="col-sm-4">
+					<hr>
+					<div class="text-right">
+						<button class="btn btn-primary btn-lg" data-ng-click="goTo('finish')">Next Step <i class="fa fa-chevron-right"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-ng-switch-when="finish">
+			<h2>Finished!</h2>
+			<div class="row">
+				<div class="col-sm-4">
+					<p class="text-muted">Open voting is now active. Please keep the 2 pass codes in the initialization report for the close voting process.</p>
+					<hr>
+					<div class="text-right">
+						<a href="/admin/logout" target="_self" class="btn btn-lg btn-danger">Finish & Log out <i class="fa fa-sign-out fa-fw"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -156,4 +156,15 @@ class User extends ConfideUser implements UserInterface, RemindableInterface {
 
 		return false;
 	}
+
+	/**
+	 * Check login password
+	 */
+	public function checkLogin($pass)
+	{
+		if (!Hash::check($pass, Confide::user()->password))
+			throw new Exception("Password incorrect!", 409);
+
+		return 1;
+	}
 }

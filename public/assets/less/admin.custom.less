@@ -163,6 +163,66 @@ a {cursor: pointer;}
 	}
 }
 
+.steps {
+    a {
+        & {
+            cursor: pointer;
+            padding: 20px 20px 20px 45px;
+            margin-right: 5px;
+            background-color: darken(@body-bg, 1%);
+            position:relative;
+            display: inline-block;
+            text-decoration: none;
+        }
+        &.disabled,
+        &[disabled] {
+            color: darken(@body-bg, 15%);
+            cursor: default;
+        }
+        &:before {
+            width: 0;
+            height:0;
+            border-top: 30px inset transparent;
+            border-bottom: 30px inset transparent;
+            border-left: 20px solid #fff;
+            position:absolute;
+            top:0;
+            left:0;
+            content:"";
+        }
+        &:after {
+            width: 0;
+            height: 0;
+            border-top: 30px inset transparent;
+            border-bottom: 30px inset transparent;
+            border-left: 20px solid darken(@body-bg, 1%);
+            position:absolute;
+            content:"";
+            top:0;
+            right: -20px;
+            z-index:2;
+        }
+        &:last-child:after,
+        &:first-child:before {border:none}
+
+        &:first-child {
+            padding-left:15px;
+            border-radius: 4px 0 0 4px;
+        }
+        &:last-child {
+            border-radius: 0 4px 4px 0;
+            padding-right: 50px;
+        }
+        &.current, &.current:hover {
+            background-color: @brand-primary;
+            color: #fff;
+
+            &:after { border-left-color: @brand-primary;}
+        }
+
+    }
+}
+
 
 /*
 Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013

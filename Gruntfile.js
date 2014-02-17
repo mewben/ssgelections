@@ -5,7 +5,8 @@ module.exports = function(grunt) {
 		less: {
 			dev: {
 				files: {
-					"public/assets/css/admin.css": "public/assets/less/admin.less"
+					"public/assets/css/admin.css": "public/assets/less/admin.less",
+					"public/assets/css/print.css": "public/assets/less/print.less"
 				},
 				options: { yuicompress: true }
 			}
@@ -14,7 +15,8 @@ module.exports = function(grunt) {
 		cssmin: {
 			css: {
 				files: {
-					"public/assets/css/admin.min.css": "public/assets/css/admin.css"
+					"public/assets/css/admin.min.css": "public/assets/css/admin.css",
+					"public/assets/css/print.min.css": "public/assets/css/print.css"
 				},
 				options: {
 					keepSpecialComments: 0

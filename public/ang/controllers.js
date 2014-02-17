@@ -129,6 +129,26 @@ angular.module('ssg')
 		}
 	])
 
+	.controller('ElectionCtrl', [
+		'$rootScope',
+		'$scope',
+		'Api',
+		'Notify',
+		function($rootScope, $scope, Api, Notify) {
+			$scope.steps = 'finish';
+
+			$scope.checkLogin = function() {
+				Api('users').query({checklogin: 1, pass: $rootScope.item.password}, function (result) {
+					$scope.steps = 'initialize';
+				}, Notify.errorCallback);
+			};
+
+			$scope.goTo = function(where) {
+				$scope.steps = where;
+			};
+		}
+	])
+
 	.controller('PartyCtrl', [
 		'$rootScope',
 		'$scope',
