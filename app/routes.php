@@ -71,8 +71,18 @@ Route::get('/admin/{path?}', array('before' => 'auth', function ($path = null) {
 
 }))->where('path', '.*');
 
-
 Route::get('/', function()
+{	
+	return Redirect::to('/login');
+});
+
+Route::get('login', function()
 {
-	return View::make('hello');
+	return View::make('login');
+});
+Route::post('login', 'BallotController@postLogin');
+
+Route::get('vote', function()
+{
+ 	return View::make('layouts.ballot');
 });

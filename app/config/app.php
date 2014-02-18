@@ -108,6 +108,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Zizaco\Confide\ConfideServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
+
+		'Way\Generators\GeneratorsServiceProvider'
 	),
 
 	/*
