@@ -25,4 +25,27 @@
 			@endforeach
 		</tbody>
 	</table>
+	<hr>
+
+	<table class="table table-bordered" style="margin-top: 300px; width:50%;">
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<h1>For Close Voting... Important!</h1>
+				</td>
+			</tr>
+			<tr>
+				<td>URL:</td>
+				<td>http://server-ip-address/close-voting</td>
+			</tr>
+			<tr>
+				<td>Pass Code 1:</td>
+				<td>{{$passcode1['value']}}</td>
+			</tr>
+			<tr>
+				<td>Pass Code 2:</td>
+				<td>{{$passcode2['value']}}</td>
+			</tr>
+		</tbody>
+	</table>
 @stop

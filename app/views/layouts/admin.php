@@ -69,12 +69,12 @@
 							<?php echo Form::close() ?>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-fw fa-2x"></i> username <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-fw fa-2x"></i> <?php echo $session['username'] ?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">username</li>
-								<li><a href="#"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
+								<li><a data-toggle="modal" data-target="#pwd"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Log out</a></li>
+								<li><a href="/logout" target="_self"><i class="fa fa-sign-out fa-fw"></i> Log out</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -82,6 +82,42 @@
 				<div data-ng-view></div>
 			</div> <!-- /#main -->
 		</div>
+
+		<div id="pwd" class="modal" tabindex="-1" role="dialog" aria-labelledby="Change Password" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <form name="pwd" class="modal-content form-horizontal" data-ng-submit="changePassword()" role="form">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title">Change Password</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="form-group">
+		      		<label for="password" class="col-sm-5 control-label">Current Password <span class="required">*</span></label>
+		      		<div class="col-sm-7">
+		      			<input type="password" id="password" placeholder="Current Password" data-ng-model="itemg.password" class="form-control" required>
+		      		</div>
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address" class="col-sm-5 control-label">New Password <span class="required">*</span></label>
+		      		<div class="col-sm-7">
+		      			<input type="password" id="address" placeholder="New Password" data-ng-model="itemg.password_new" class="form-control" required>
+		      		</div>
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="color" class="col-sm-5 control-label">Repeat New Password <span class="required">*</span></label>
+		      		<div class="col-sm-7">
+		      			<input type="password" id="color" placeholder="Confirm password" maxlength="7" data-ng-model="itemg.password_confirmation" class="form-control" required>
+		      		</div>
+		      	</div>
+		      </div>
+		      <div class="modal-footer">
+		      	<span class="loading-holder" data-loading><i class="loading icon"></i></span>
+		      	<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="icon angle left"></i>Cancel</button>
+		      	<button type="submit" data-ng-disabled="!pwd.$valid" class="btn btn-sm btn-primary"><i class="checkmark icon"></i> Save</button>
+		      </div>
+		    </form><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
 		<?php if (App::environment('production')) : ?>
 			<?php echo HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') ?>

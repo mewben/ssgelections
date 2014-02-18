@@ -53,6 +53,10 @@ class Ballot extends BaseModel {
 		if (!Session::has('user.sem.id'))	throw new Exception("No semester Code selected.", 409);
 		// rezero count
 		$model = static::where('sem_id', '=', Session::get('user.sem.id'))->delete();
+
+		// set 2 pass codes for close voting
+		Configuration::set('close_passcode_1', mt_rand(12345678, 98765432), Session::get('user.campus.id'));
+		Configuration::set('close_passcode_2', mt_rand(12345678, 98765432), Session::get('user.campus.id'));
 		return 1;
 	}
 }

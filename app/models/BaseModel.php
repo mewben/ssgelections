@@ -110,7 +110,14 @@ class BaseModel extends Eloquent {
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
 				if (is_numeric($value))					$data[$key] = $value + 0;
-				elseif (gettype($value) === 'string')	$data[$key] = str_replace('&amp;', '&', e(trim($value)));
+				elseif (gettype($value) === 'string') {
+					$v = e(trim($value));
+					$v = str_replace('&Ntilde;', 'Ñ', $v);
+					$v = str_replace('&ntilde;', 'ñ', $v);
+					$v = str_replace('&amp;', '&', $v);
+
+					$data[$key] = $v;
+				}
 				else 									$data[$key] = $value;
 			}
 		} else {

@@ -42,7 +42,9 @@ class UtilityController extends BaseController {
 
 		if (Input::get('w') == 'initial') {// print initial report
 			$data = Ballot::getResults();
-			return View::make('print.initial', compact('data', 'session'));
+			$passcode1 = Configuration::get('close_passcode_1', Session::get('user.campus.id'));
+			$passcode2 = Configuration::get('close_passcode_2', Session::get('user.campus.id'));
+			return View::make('print.initial', compact('data', 'session', 'passcode1', 'passcode2'));
 		}
 
 		$data = Voter::getAll();
@@ -62,5 +64,10 @@ class UtilityController extends BaseController {
 	public function initialize()
 	{
 		return Response::json(Ballot::initialize(), 200);
+	}
+
+	public function changePassword()
+	{
+		return Response::json(User::changePassword(Input::all()), 200);
 	}
 }

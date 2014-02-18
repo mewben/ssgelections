@@ -14,6 +14,7 @@ angular.module('ssg')
 			$rootScope.sy_g = window.sy_g;
 			$rootScope.sem_g = window.sem_g;
 			$rootScope.item = {};
+			$rootScope.itemg = {};
 			$rootScope.itemParams = angular.extend({
 				filter: 'active'
 			}, $location.search());
@@ -74,6 +75,16 @@ angular.module('ssg')
 			$rootScope.forceDeleteItem = function(id) {
 				if (confirm("Are you sure you want to permanently remove this item?"))
 					Api($rootScope.table).delete({id: id, force: 1}, successCallback, Notify.errorCallback);
+			};
+
+			$rootScope.changePassword = function() {
+				if ($rootScope.itemg.password_new != $rootScope.itemg.password_confirmation)
+					Notify.errorCallback("New password doesn't match.");
+				else
+					Api('change_password').save($rootScope.itemg, function(result) {
+						$('.modal').modal('hide');
+						Notify.successCallback("Password Changed Successfully.");
+					}, Notify.errorCallback);
 			};
 
 			$rootScope.get = function(table) {

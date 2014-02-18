@@ -29,6 +29,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 	Route::get('export', 'UtilityController@export');
 	Route::get('print', 'UtilityController@printWhat');
 	Route::get('initialize', 'UtilityController@initialize');
+	Route::post('change_password', 'UtilityController@changePassword');
 });
 
 Route::post('/import', function() {

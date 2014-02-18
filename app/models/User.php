@@ -167,4 +167,15 @@ class User extends ConfideUser implements UserInterface, RemindableInterface {
 
 		return 1;
 	}
+
+	public static function changePassword($data)
+	{
+		if (!Hash::check($data['password'], Confide::user()->password))
+			throw new Exception("Your current password is incorrect.", 409);
+
+		$user = Confide::user();
+		$user->password = $data['password_new'];
+		$user->save();
+		return 1;
+	}
 }
