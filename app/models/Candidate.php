@@ -23,6 +23,11 @@ class Candidate extends BaseModel {
 		return $this->belongsTo('Party');
 	}
 
+	public function results()
+	{
+		return $this->hasMany('Ballot');
+	}
+
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)
 	{
 		$with = ['position', 'party'];

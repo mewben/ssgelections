@@ -108,8 +108,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Zizaco\Confide\ConfideServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
-
-		'Way\Generators\GeneratorsServiceProvider'
+		'Clockwork\Support\Laravel\ClockworkServiceProvider',
 	),
 
 	/*
@@ -176,7 +175,8 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Confide'		  => 'Zizaco\Confide\ConfideFacade',
-		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+		'Excel' 		  => 'Maatwebsite\Excel\Facades\Excel',
+		'Clockwork' 	  => 'Clockwork\Support\Laravel\Facade',
 	),
 
 );

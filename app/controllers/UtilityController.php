@@ -36,11 +36,16 @@ class UtilityController extends BaseController {
 		return Voter::export($data);
 	}
 
-	public function printVoters()
+	public function printWhat()
 	{
-		$data = Voter::getAll();
 		$session = Session::get('user');
 
+		if (Input::get('w') == 'initial') {// print initial report
+			$data = Ballot::getResults();
+			return View::make('print.initial', compact('data', 'session'));
+		}
+
+		$data = Voter::getAll();
 		return View::make('print.voters', compact('data', 'session'));
 	}
 
@@ -56,6 +61,6 @@ class UtilityController extends BaseController {
 	 */
 	public function initialize()
 	{
-		return Response::json(Utility::initialize(), 200);
+		return Response::json(Ballot::initialize(), 200);
 	}
 }

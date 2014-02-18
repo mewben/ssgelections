@@ -9,7 +9,7 @@
 		"maatwebsite/excel": "dev-master"
 	},
 	"require-dev": {
-		"way/generators": "1.1"
+		"itsgoingd/clockwork": "1.*"
 	},
 	"autoload": {
 		"classmap": [

@@ -137,10 +137,4 @@ class Utility extends BaseModel {
 
 		return $menu;
 	}
-
-	public static function initialize()
-	{
-		// rezero count
-		return 1;
-	}
 }

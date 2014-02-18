@@ -12,14 +12,19 @@ class Position extends BaseModel {
 		'name' => 'required'
 	];
 
-	public function setCodeAttribute($value)
+	public function candidates()
 	{
-		$this->attributes['code'] = strtoupper($value);
+		return $this->hasMany('Candidate')->with('results')->where('sem_id', '=', Session::get('user.sem.id'))->orderBy('name');
 	}
 
 	public function college()
 	{
 		return $this->belongsTo('College');
+	}
+
+	public function setCodeAttribute($value)
+	{
+		$this->attributes['code'] = strtoupper($value);
 	}
 
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)

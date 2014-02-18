@@ -2,6 +2,21 @@
 
 class BaseController extends Controller {
 
+	public function __construct()
+	{
+		if (!App::environment('production')) {
+			$this->beforeFilter(function()
+			{
+			    Event::fire('clockwork.controller.start');
+			});
+
+			$this->afterFilter(function()
+			{
+			    Event::fire('clockwork.controller.end');
+			});
+		}
+	}
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

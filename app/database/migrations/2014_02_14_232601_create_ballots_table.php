@@ -16,12 +16,11 @@ class CreateBallotsTable extends Migration {
 		Schema::create('ballots', function(Blueprint $table)
 		{
 			$table->integer('voter_id')->unsigned();
-			$table->integer('sem_id')->unsigned();
 			$table->integer('candidate_id')->unsigned();
+			$table->integer('sem_id')->unsigned();
 			$table->timestamps();
 
-			$table->softDeletes();
-
+			$table->primary(array('voter_id', 'sem_id', 'candidate_id'));
 			$table->foreign('voter_id')->references('id')->on('voters');
 			$table->foreign('candidate_id')->references('id')->on('candidates');
 			$table->foreign('sem_id')->references('id')->on('semesters');
@@ -41,7 +40,7 @@ class CreateBallotsTable extends Migration {
 			$table->dropForeign('ballots_sem_id_foreign');
 			$table->dropForeign('ballots_candidate_id_foreign');
 		});
-		
+
 		Schema::drop('ballots');
 	}
 
