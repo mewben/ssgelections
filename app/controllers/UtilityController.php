@@ -50,4 +50,12 @@ class UtilityController extends BaseController {
 			return Voter::count();
 		}
 	}
+
+	/**
+	 * Re-zero and initalize
+	 */
+	public function initialize()
+	{
+		return Response::json(Utility::initialize(), 200);
+	}
 }

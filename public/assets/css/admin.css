@@ -4219,7 +4219,7 @@ a {
   position: relative;
   text-transform: uppercase;
 }
-.steps a {
+.steps button {
   cursor: pointer;
   padding: 20px 20px 20px 45px;
   margin-right: 5px;
@@ -4227,13 +4227,14 @@ a {
   position: relative;
   display: inline-block;
   text-decoration: none;
+  border: none;
 }
-.steps a.disabled,
-.steps a[disabled] {
+.steps button.disabled,
+.steps button[disabled] {
   color: #ced4d4;
   cursor: default;
 }
-.steps a:before {
+.steps button:before {
   width: 0;
   height: 0;
   border-top: 30px inset transparent;
@@ -4244,7 +4245,7 @@ a {
   left: 0;
   content: "";
 }
-.steps a:after {
+.steps button:after {
   width: 0;
   height: 0;
   border-top: 30px inset transparent;
@@ -4256,25 +4257,25 @@ a {
   right: -20px;
   z-index: 2;
 }
-.steps a:last-child:after,
-.steps a:first-child:before {
+.steps button:last-child:after,
+.steps button:first-child:before {
   border: none;
 }
-.steps a:first-child {
+.steps button:first-child {
   padding-left: 15px;
   border-radius: 4px 0 0 4px;
 }
-.steps a:last-child {
+.steps button:last-child {
   border-radius: 0 4px 4px 0;
   padding-right: 50px;
 }
-.steps a.current,
-.steps a.current:hover {
+.steps button.current,
+.steps button.current:hover {
   background-color: #45c8dc;
   color: #fff;
 }
-.steps a.current:after,
-.steps a.current:hover:after {
+.steps button.current:after,
+.steps button.current:hover:after {
   border-left-color: #45c8dc;
 }
 /*

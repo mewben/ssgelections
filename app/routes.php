@@ -27,7 +27,8 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 	Route::post('voters', 'UtilityController@store');
 	Route::get('voters', 'UtilityController@count');
 	Route::get('export', 'UtilityController@export');
-	Route::get('print', 'UtilityController@printVoters');
+	Route::get('print', 'UtilityController@printWhat');
+	Route::get('initialize', 'UtilityController@initialize');
 });
 
 Route::post('/import', function() {

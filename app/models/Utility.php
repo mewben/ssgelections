@@ -81,7 +81,8 @@ class Utility extends BaseModel {
 						'url' => '/admin/manage/campuses',
 						'ctrl' => 'CampusCtrl',
 						'temp' => "/ang/{$min}/admin/manage.campuses.html",
-						'icon' => 'fa-building-o'
+						'icon' => 'fa-building-o',
+						'access' => ['superadmin']
 					],
 					[
 						'title' => 'Semesters',
@@ -136,5 +137,10 @@ class Utility extends BaseModel {
 
 		return $menu;
 	}
-	
+
+	public static function initialize()
+	{
+		// rezero count
+		return 1;
+	}
 }

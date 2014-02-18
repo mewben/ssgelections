@@ -135,7 +135,9 @@ angular.module('ssg')
 		'Api',
 		'Notify',
 		function($rootScope, $scope, Api, Notify) {
-			$scope.steps = 'finish';
+			$scope.steps = 'initialize';
+			$scope.zeroed = false;
+			$scope.printed = false;
 
 			$scope.checkLogin = function() {
 				Api('users').query({checklogin: 1, pass: $rootScope.item.password}, function (result) {
@@ -143,9 +145,17 @@ angular.module('ssg')
 				}, Notify.errorCallback);
 			};
 
+			$scope.initialize = function() {
+				Api('initialize').query(function (result) {
+					$scope.zeroed = true;
+				}, Notify.errorCallback);
+			};
+
 			$scope.goTo = function(where) {
 				$scope.steps = where;
 			};
+
+
 		}
 	])
 

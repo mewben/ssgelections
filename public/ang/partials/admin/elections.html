@@ -5,9 +5,9 @@
 	<hr>
 	<div>
 		<div class="steps">
-		    <a data-ng-class="{current: steps==undefined}" data-ng-click="steps = undefined">Open Voting</a>
-		    <a data-ng-class="{current: steps=='initialize'}" data-ng-click="steps = 'initialize'" data-ng-disabled="steps==undefined">Initialize Vote Counters</a>
-		    <a data-ng-class="{current: steps=='finish'}" data-ng-click="steps = 'finish'" data-ng-disabled="steps==undefined||steps=='initialize'">Finish</a>
+		    <button data-ng-class="{current: steps==undefined}" data-ng-click="steps = undefined">Open Voting</button>
+		    <button data-ng-class="{current: steps=='initialize'}" data-ng-click="steps = 'initialize'" data-ng-disabled="steps==undefined">Initialize Vote Counters</button>
+		    <button data-ng-class="{current: steps=='finish'}" data-ng-click="steps = 'finish'" data-ng-disabled="steps==undefined||steps=='initialize'">Finish</button>
 		</div>
 	</div>
 
@@ -28,16 +28,16 @@
 		</div>
 		<div data-ng-switch-when="initialize">
 			<h2>Initialize Vote Counters</h2>
-			<button class="btn btn-lg btn-primary">Re-zero & Initialize</button>
+			<button class="btn btn-lg btn-primary" data-ng-click="initialize()">Re-zero & Initialize</button>
 			<span class="load animate spin" data-loading></span>
 			<p class="text-muted">This resets the vote counters to zero and prepares all the necessary data for voting.</p>
 			<h2>&nbsp;</h2>
-			<a href="/api/v1/print?w=initial" class="btn btn-lg btn-warning"><i class="fa fa-print fa-fw fa-2x"></i>Print Initialization Report</a>
+			<a data-ng-show="zeroed" data-ng-click="printed=1" href="/api/v1/print?w=initial" target="_blank" class="btn btn-lg btn-warning"><i class="fa fa-print fa-fw fa-2x"></i>Print Initialization Report</a>
 			<div class="row">
 				<div class="col-sm-4">
 					<hr>
 					<div class="text-right">
-						<button class="btn btn-primary btn-lg" data-ng-click="goTo('finish')">Next Step <i class="fa fa-chevron-right"></i></button>
+						<button class="btn btn-primary btn-lg" data-ng-disabled="!printed" data-ng-click="goTo('finish')">Next Step <i class="fa fa-chevron-right"></i></button>
 					</div>
 				</div>
 			</div>
