@@ -45,6 +45,12 @@ class Ballot extends BaseModel {
 		$model = $model->orderBy('order');
 		$result = $model->get()->toArray();
 
+		foreach ($result as $kp => $positions) {
+			foreach ($positions['candidates'] as $kc => $candidates) {
+				$result[$kp]['candidates'][$kc]['results'] = count($candidates['results']);
+			}
+		}
+
 		return $result;
 	}
 
@@ -59,4 +65,20 @@ class Ballot extends BaseModel {
 		Configuration::set('close_passcode_2', mt_rand(12345678, 98765432), Session::get('user.campus.id'));
 		return 1;
 	}
+
+	public static function closeVoting($passcodes, $campus_id, $sem_id)
+	{
+		// check 2 passcodes if correct
+		if (!Configuration::where('name', '=', 'close_passcode_1')->where('value', '=', Input::get('passcode1'))->where('campus_id', '=', $campus_id)->first() OR 
+			!Configuration::where('name', '=', 'close_passcode_2')->where('value', '=', Input::get('passcode2'))->where('campus_id', '=', $campus_id)->first())
+			throw new Exception('Pass Codes Incorrect!', 400);
+
+		Configuration::where('name', '=', 'open_voting')->where('campus_id', '=', $campus_id)->delete();
+
+		Session::flush();
+		Session::put('user.campus', Campus::findOrFail($campus_id)->toArray());
+		Session::put('user.sem', Semester::findOrFail($sem_id)->toArray());
+		return 1;
+	}
+
 }

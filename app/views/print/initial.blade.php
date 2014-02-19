@@ -6,28 +6,44 @@
 @stop
 
 @section('content')
-	<table class="table table-bordered table-condensed">
-		<tbody>
-			@foreach($data as $key => $value)
-			<tr>
-				<td colspan="2"><h4>{{$value['name']}}</h4></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>
-					<ol>
-					@foreach($value['candidates'] as $k => $c)
-						<li><h5>{{$c['name']}} - {{count($c['results'])}}</h5></li>
-					@endforeach
-					</ol>
-				</td>
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
-	<hr>
 
-	<table class="table table-bordered" style="margin-top: 300px; width:50%;">
+	@foreach($data as $positions)
+		<div>
+			<h3>{{$positions['name']}}</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th width="10%">Candidate #</th>
+						<th width="50%">Full Name</th>
+						<th width="30%">Party</th>
+						<th width="10%">No. of Votes</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($positions['candidates'] as $kc => $candidates)
+					<tr>
+						<td>{{$kc + 1}}</td>
+						<td>{{$candidates['name']}}</td>
+						<td>{{$candidates['party']['code']}}</td>
+						<td align="right">{{$candidates['results']}}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	@endforeach
+	<h3>*** NOTHING FOLLOWS ***</h3>
+	<div>
+		<em>
+			Printed: {{$session['date']}} <br>
+			Total number of voters: {{$session['count']['total']}} <br>
+			Ballots cast: {{$session['count']['voted']}} <br>
+		</em>
+	</div>
+
+
+	<hr>
+	<table class="table table-bordered" style="margin-top: 150px; width:50%;">
 		<tbody>
 			<tr>
 				<td colspan="2">
@@ -36,7 +52,7 @@
 			</tr>
 			<tr>
 				<td>URL:</td>
-				<td>http://server-ip-address/close-voting</td>
+				<td>http://server-ip-address/close-voting?cid=<?php echo Session::get('user.campus.id') ?>&sid=<?php echo Session::get('user.sem.id') ?></td>
 			</tr>
 			<tr>
 				<td>Pass Code 1:</td>

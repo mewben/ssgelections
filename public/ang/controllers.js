@@ -198,6 +198,15 @@ angular.module('ssg')
 		}
 	])
 
+	.controller('ResultCtrl', [
+		'$scope',
+		'Api',
+		'Notify',
+		function($scope, Api, Notify) {
+			$scope.results = Api('results').get();
+		}
+	])
+
 	.controller('SemesterCtrl', [
 		'$rootScope',
 		'$scope',

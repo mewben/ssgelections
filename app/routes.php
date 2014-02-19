@@ -30,15 +30,14 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 	Route::get('print', 'UtilityController@printWhat');
 	Route::get('initialize', 'UtilityController@initialize');
 	Route::post('change_password', 'UtilityController@changePassword');
+	Route::get('results', 'UtilityController@results'); // when accessed from admin
 });
 
-
+Route::any('/close-voting', 'UtilityController@closeVoting');
 Route::get('/ongoing', function() {
 	return View::make('ongoing');
 });
-Route::get('/close-voting', function() {
-	return View::make('closevoting');
-});
+Route::get('/results', 'UtilityController@results');
 
 Route::get('/test', function() {
 	if (App::environment('production')) 	return Redirect::to('/admin');

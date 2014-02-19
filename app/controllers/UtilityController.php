@@ -38,6 +38,8 @@ class UtilityController extends BaseController {
 
 	public function printWhat()
 	{
+		Session::put('user.count', Voter::count());
+		Session::put('user.date', date('Y-m-d H:i:s'));
 		$session = Session::get('user');
 
 		if (Input::get('w') == 'initial') {// print initial report
@@ -69,5 +71,40 @@ class UtilityController extends BaseController {
 	public function changePassword()
 	{
 		return Response::json(User::changePassword(Input::all()), 200);
+	}
+
+	public function closeVoting()
+	{
+		if(!($campus_id = Input::get('cid') AND $sem_id = Input::get('sid')))		throw new Exception("Invalid Codes.", 409);
+
+		if (Request::isMethod('get')) { //display close voting form
+			return View::make('closevoting', compact('campus_id', 'sem_id'));
+		} else {
+			return Response::json(Ballot::closeVoting(Input::all(), $campus_id, $sem_id), 200);
+		}
+
+	}
+
+	// results
+	public function results()
+	{
+		if(!Session::has('user.campus') OR ! Session::has('user.sem'))
+			throw new Exception("No Campus Or Semester Valid!", 400);
+
+		if(Configuration::where('name', '=', 'open_voting')->where('campus_id', '=', Session::get('user.campus.id'))->first())
+			throw new Exception("Voting is not closed yet.. You can't view the results.", 400);
+
+		Session::put('user.count', Voter::count());
+		Session::put('user.date', date('Y-m-d H:i:s'));
+		$session = Session::get('user');
+		$data = Ballot::getResults();
+
+		if (Request::ajax())	return Response::json($data = array('data' => $data, 'session' => $session), 200);
+
+		if(Input::get('w') == 'print') { // print results
+			return View::make('print.results', compact('session', 'data'));
+		} else {
+			return View::make('results', compact('session'));
+		}
 	}
 }

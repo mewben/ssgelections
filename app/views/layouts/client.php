@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<?php print_r($positions) ?>
-<html lang="en">
+<html lang="en" data-ng-app="ssg" data-ng-controller="ballotCtrl">
 	<head>
 		<meta charset="utf-8">
 		<title>SSGElections &middot; Bohol Island State University</title>
@@ -28,19 +27,19 @@
 					<p class="logo"><i class="fa fa-archive fa-2x"></i> SSG Elections</p>
 				</div>	
 				<ul class="nav navbar-nav navbar-right">
-					<!-- <li>
-						<a href="#">
-							<i class="fa fa-bookmark fa-fw fa-1x"></i> Main Campus| SY: No-Year Sem: 0
-						</a>
-					</li> -->
 					<li>
 						<a href="#">
-							<i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: <?php echo $session['id'] ?>
+							<i class="fa fa-bookmark fa-fw fa-1x"></i> Main Campus| SY: No-Year Sem: 0
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-user fa-fw fa-1x"></i> Voter Name: <?php echo $session['lname'] . ', ' . $session['fname'] . ' ' . $session['mname'] ?>
+							<i class="fa fa-barcode fa-fw fa-1x"></i> ID: 012345
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-user fa-fw fa-1x"></i> Libay, Phillip Glenn Libay
 						</a>
 					</li>
 				</ul>
@@ -49,17 +48,242 @@
 
 		<!-- Main -->
 		<div class="main container">
-			<p>
-			<?php 
-				foreach ($positions as $k => $v) {
-					if ($v['name'] == 'President') {
-						foreach ($v['candidate'] as $kk => $vv) {
-							echo '<li>' . $vv['name'] . '</li>';
-						}
-					}
-				}
-			?>	
-			</p>
+			<?php echo Form::open(['url' => '', 'method' => 'post', 'role' => 'form', 'class' => '']) ?>
+				<div class="position col-md-12">
+					<h3><i class="fa fa-user fa-fw"></i> President</h3>
+					<div class="option">
+						<ul>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">1</span>
+									<p class="candidate-name"><strong>Melvin Soldia</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">2</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">3</span>
+									<p class="candidate-name"><strong>Christian Dave Bunales</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="position col-md-12">
+					<h3><i class="fa fa-user fa-fw"></i> Vice-President</h3>
+					<div class="option">
+						<ul>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">1</span>
+									<p class="candidate-name"><strong>Melvin Soldia</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">2</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">3</span>
+									<p class="candidate-name"><strong>Christian Dave Bunales</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="position col-md-12">
+					<h3><i class="fa fa-users fa-fw"></i> Senators</h3>
+					<div class="option">
+						<ul>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">1</span>
+									<p class="candidate-name"><strong>Melvin Soldia</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">2</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">3</span>
+									<p class="candidate-name"><strong>Christian Dave Bunales</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">4</span>
+									<p class="candidate-name"><strong>Melvin Soldia</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">5</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">6</span>
+									<p class="candidate-name"><strong>Christian Dave Bunales</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">7</span>
+									<p class="candidate-name"><strong>Melvin Soldia</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">8</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">9</span>
+									<p class="candidate-name"><strong>John Fernie Boron</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="position col-md-12">
+					<h3><i class="fa fa-user fa-fw"></i> Governor (College of Engineering)</h3>
+					<div class="option">
+						<ul>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">1</span>
+									<p class="candidate-name"><strong>John Fernie Boron</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">2</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">3</span>
+									<p class="candidate-name"><strong>Christian Dave Bunales</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="position col-md-12">
+					<h3><i class="fa fa-user fa-fw"></i> Representative (College of Engineering - 5th Year)</h3>
+					<div class="option">
+						<ul>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">1</span>
+									<p class="candidate-name"><strong>Melvin Soldia</strong></p>
+									<small class="candidate-party">Party-People</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">2</span>
+									<p class="candidate-name"><strong>Phillip Glenn Libay</strong></p>
+									<small class="candidate-party">Party-Pilipinas</small>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-primary">
+									<span class="candidate-num">3</span>
+									<p class="candidate-name"><strong>Christian Dave Bunales</strong></p>
+									<small class="candidate-party">Party-Club</small>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="controls pull-right">
+					<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-times"></i> Clear</button>
+					<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ballotConfirm"><i class="fa fa-fw fa-check"></i> Cast</button>
+				</div>
+
+				<div class="modal fade" id="ballotConfirm" tabindex="-1" role="dialog" aria-labelledby="ballotConfirmLabel" aria-hidden="true">
+					<div class="modal-dialog">
+				    	<div class="modal-content">
+				    		<div class="modal-header">
+				    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				    			<h4 class="modal-title"><strong>Ballot Confirmation</strong></h4>
+				    		</div>
+				    		<div class="modal-body">
+				        		<table class='table table-striped'>
+				        			<tr>
+				        				<td>President:</td>
+				        				<td>Melvin Soldia</td>				        				
+				        			</tr>
+				        			<tr>
+				        				<td>Vice-President:</td>
+				        				<td>Phillip Glenn Libay</td>				        				
+				        			</tr>
+				        			<tr>
+				        				<td>Senators:</td>
+				        				<td>
+				        					<ol>
+				        						<li>Melvin Soldia</li>
+				        						<li>Phillip Glenn Libay</li>
+				        						<li>Christian Dave Bunales</li>
+				        						<li>John Fernie Boron</li>
+				        					</ol>
+				        				</td>
+				        			</tr>
+				        			<tr>
+				        				<td>Governor:</td>
+				        				<td>John Fernie Boron</td>
+				        			</tr>
+				        			<tr>
+				        				<td>Representative:</td>
+				        				<td>Christian Dave Bunales</td>
+				        			</tr>
+				        		</table>
+				      		</div>
+				      		<div class="modal-footer">
+				        		<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Change</button>
+				        		<button type="button" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Confirm</button>
+				      		</div>
+				    	</div><!-- /.modal-content -->
+				  	</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+			<?php echo Form::close() ?>
 		</div> <!-- end main -->
 
 		<?php if (App::environment('production')) : ?>

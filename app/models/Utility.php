@@ -124,6 +124,8 @@ class Utility extends BaseModel {
 			'results' => [
 				'url' => '/admin/results',
 				'baseurl' => '/admin/results',
+				'ctrl' => 'ResultCtrl',
+				'temp' => "/ang/{$min}/admin/results.html",
 				'icon' => 'fa-bar-chart-o'
 			],
 			'election' => [
