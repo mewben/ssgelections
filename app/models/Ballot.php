@@ -9,9 +9,9 @@ class Ballot extends BaseModel {
 		return $this->belongsTo('Position');
 	}
 
-	public function partylist()
+	public function party()
 	{
-		return $this->belongsTo('Partylist');
+		return $this->belongsTo('Party');
 	}
 
 	public static function getResults()

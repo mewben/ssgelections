@@ -67,18 +67,28 @@ Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($p
 
 }))->where('path', '.*');
 
-Route::get('/', function()
-{
-	return Redirect::to('/login');
-});
+Route::get('/', 'BallotsController@index');
 
-Route::get('login', function()
-{
-	return View::make('login');
-});
-Route::post('login', 'BallotController@postLogin');
+// Route::get('/', function()
+// {	
+// 	if(Session::has('voter')){
+// 		$session = Session::get('voter');
+// 		$position = Position::with('Candidate')->get();
+// 		return View::make('layouts.client', compact('session', 'position'));
+// 	}
+// 	else
+// 	{
+// 		return Redirect::to('login');
+// 	}
+// });
 
-Route::get('vote', function()
+Route::get('login', 'SessionsController@create');
+Route::post('login', 'SessionsController@store');
+Route::get('logout', 'SessionsController@logout');
+Route::resource('sessions', 'SessionsController');
+
+Route::get('que', function()
 {
- 	return View::make('layouts.ballot');
+ 	$var = Position::with('Candidate')->get();
+ 	return $var;
 });
