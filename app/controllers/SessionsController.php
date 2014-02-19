@@ -30,7 +30,7 @@ class SessionsController extends BaseController {
 		}
 		elseif($data)
 		{
-			Session::put('voter', $data);
+			Session::put('voter', $data->toArray());
 			return Redirect::to('/');
 		}
 	}

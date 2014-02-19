@@ -13,8 +13,8 @@ class BallotsController extends BaseController {
 	{
 		if(Session::has('voter')){
 			$session = Session::get('voter');
-			$positions = Position::with('Candidate')->get()->toArray();
-			return View::make('layouts.client', compact('session', 'positions'));
+			$options = Ballot::getOptions();
+			return View::make('client', compact('session', 'options'));
 		}
 		else
 		{

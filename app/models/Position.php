@@ -17,6 +17,11 @@ class Position extends BaseModel {
 		return $this->hasMany('Candidate')->with('results')->where('sem_id', '=', Session::get('user.sem.id'))->orderBy('name');
 	}
 
+	public function options()
+	{
+		return $this->hasMany('Candidate')->whereSemId(Session::get('voter.sem_id'))->orderBy('name');
+	}
+
 	public function college()
 	{
 		return $this->belongsTo('College');

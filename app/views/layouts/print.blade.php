@@ -36,5 +36,7 @@
 				</div>
 			</div>
 		</div>
+
+		<?php print_r($session) ?>
 	</body>
 </html>
