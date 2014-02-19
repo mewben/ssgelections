@@ -54,6 +54,37 @@ class Ballot extends BaseModel {
 		return $result;
 	}
 
+	public static function getOptions()
+	{
+		//fetch positions with candidates
+		$model = new Position;
+
+		$model = $model->with('options');
+		$model = $model->where(function ($query) {
+			$query->where(function($q) {
+				$q->whereNull('college_id')
+					->WhereNull('year');
+			});
+			$query->orWhere(function($q) {
+				$q->where('college_id', '=', Session::get('voter.college_id'))
+					->WhereNull('year');
+			});
+			$query->orWhere(function($q){
+				$q->where('college_id', '=', Session::get('voter.college_id'))
+					->where('year', '=', Session::get('voter.year'));
+			});
+		});
+
+		$model = $model->where(function($query) {
+
+		});
+
+		$model = $model->orderBy('order');
+		$options = $model->get()->toArray();
+
+		return $options;
+	}
+
 	public static function initialize()
 	{
 		if (!Session::has('user.sem.id'))	throw new Exception("No semester Code selected.", 409);
