@@ -50,3 +50,41 @@
 .modal ol {
   padding-left: 16px;
 }
+.ongoing {
+  margin-top: 10%;
+  background-color: #ffffff;
+  border: 1px solid #1da0b4;
+  padding: 5%;
+  text-align: center;
+  color: #848484;
+}
+.ongoing-header {
+  margin-bottom: 5%;
+  border-bottom: 1px solid #eeeeee;
+}
+.ongoing-header h1 {
+  margin: 0;
+  color: #15a1b6;
+  text-transform: uppercase;
+}
+.ongoing-header p { margin-bottom: 3%; }
+ul.ongoing-body {
+  list-style: none;
+  padding: 0;
+}
+ul.ongoing-body li {
+  border: 1px solid #eeeeee;
+  padding: 0;
+}
+ul.ongoing-body li:first-child {
+  margin-left: 4%; 
+}
+ul.ongoing-body li p.timer-data {
+  font-size: 50px;
+  margin-bottom: 0;
+}
+.ongoing-footer { margin-top: 10%; }
+.ongoing-footer p {
+  font-size: 10px;
+  margin: 0;
+}
