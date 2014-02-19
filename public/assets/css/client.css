@@ -2072,9 +2072,11 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #1e2a36;
-  border-color: #0d1318;
+  background-color: #46719c;
+  border-color: #032547;
 }
+/*#1e2a36, #0d1318*/
+/*#46719C, #032547*/
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
@@ -2746,4 +2748,32 @@ h6 {
   top: 0;
   left: 50%;
   margin-left: -270px;
+}
+.ballot-header p {
+  margin-top: 3%;
+  text-align: right;
+}
+.ballot-body { margin: 3% 0 3% 0;  }
+.ballot-body li { list-style: none; }
+.postOptions {
+  padding: 3% 0 3% 3%;
+  margin: 0 0 3% 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-left: 5px solid #46719c;
+}
+.postOptions h3 {
+  padding: 0 0 1% 0;
+  margin: 0 0 1% 0;
+}
+.post-option { margin-bottom: 3% }
+.postOption button { margin-left: 6%; }
+/*#46719C, #032547*/
+
+.ongoing {
+  margin-top: 10%;
+}
+.footer { margin-top: 5%; }
+.footer p {
+  margin: 0;
+  color: #a3a3a3;
 }
