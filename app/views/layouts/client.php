@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php print_r($positions) ?>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -20,37 +21,46 @@
 		<![endif]-->
 	</head>
 	<body>
-		
-		<div class="container">
-			<div class="login-form col-md-4 col-md-offset-4">
-				<?php echo Form::open(['route' => 'sessions.store', 'method' => 'post', 'role' => 'form', 'class' => 'login form-horizontal']); ?>
-
-					<div class="form-group">
-						<h1>Login</h1>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-user fa-fw fa-1x"></i>
-							</span>
-							<input type="text" name="id" id="id" class="form-control" placeholder="Voter ID">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-eye-slash fa-fw fa-1x"></i>
-							</span>
-							<input type="password" name="passcode" id="passcode" class="form-control" placeholder="Passcode">
-						</div>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-fw fa-1x"></i> Login</button>
-					</div>
-
-				<?php echo Form::close(); ?>
+		<!-- Navbar -->
+		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navheader">
+					<p class="logo"><i class="fa fa-archive fa-2x"></i> SSG Elections</p>
+				</div>	
+				<ul class="nav navbar-nav navbar-right">
+					<!-- <li>
+						<a href="#">
+							<i class="fa fa-bookmark fa-fw fa-1x"></i> Main Campus| SY: No-Year Sem: 0
+						</a>
+					</li> -->
+					<li>
+						<a href="#">
+							<i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: <?php echo $session['id'] ?>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-user fa-fw fa-1x"></i> Voter Name: <?php echo $session['lname'] . ', ' . $session['fname'] . ' ' . $session['mname'] ?>
+						</a>
+					</li>
+				</ul>
 			</div>
-		</div>
+		</div> <!-- end navbar -->
+
+		<!-- Main -->
+		<div class="main container">
+			<p>
+			<?php 
+				foreach ($positions as $k => $v) {
+					if ($v['name'] == 'President') {
+						foreach ($v['candidate'] as $kk => $vv) {
+							echo '<li>' . $vv['name'] . '</li>';
+						}
+					}
+				}
+			?>	
+			</p>
+		</div> <!-- end main -->
 
 		<?php if (App::environment('production')) : ?>
 			<?php echo HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') ?>

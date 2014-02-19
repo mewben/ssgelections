@@ -16,7 +16,10 @@ class Position extends BaseModel {
 	{
 		$this->attributes['code'] = strtoupper($value);
 	}
-
+	public function candidate()
+	{
+		return $this->hasMany('Candidate');
+	}
 	public function college()
 	{
 		return $this->belongsTo('College');

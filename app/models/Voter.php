@@ -31,7 +31,7 @@ class Voter extends BaseModel {
 		if (!Session::has('user.sem.id'))	throw new Exception("No semester code selected.", 409);
 
 		// Extract data from csv
-		$data = Excel::load(Input::file('file')->getRealPath(), false, 'ISO-8859-1')->toArray();
+		$data = Excel::load(Input::file('file')->getRealPath(), false, 'cp1250')->toArray();
 
 		// prepare data
 		$newdata = [];
