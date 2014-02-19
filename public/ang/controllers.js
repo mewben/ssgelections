@@ -165,8 +165,6 @@ angular.module('ssg')
 			$scope.goTo = function(where) {
 				$scope.steps = where;
 			};
-
-
 		}
 	])
 

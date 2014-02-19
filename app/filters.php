@@ -78,3 +78,10 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Route::filter('closedvoting', function()
+{
+	if (Configuration::where('name', '=', 'open_voting')->where('campus_id', '=', Session::get('user.campus.id'))->first())
+		return Redirect::to('/ongoing');
+});

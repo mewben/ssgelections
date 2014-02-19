@@ -74,7 +74,7 @@
 								<li class="dropdown-header">username</li>
 								<li><a data-toggle="modal" data-target="#pwd"><i class="fa fa-lock fa-fw"></i> Change password</a></li>
 								<li class="divider"></li>
-								<li><a href="/logout" target="_self"><i class="fa fa-sign-out fa-fw"></i> Log out</a></li>
+								<li><a href="/admin/logout" target="_self"><i class="fa fa-sign-out fa-fw"></i> Log out</a></li>
 							</ul>
 						</li>
 					</ul>

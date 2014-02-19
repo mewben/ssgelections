@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
+Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 
 	Route::resource('campuses', 'CampusesController');
 	Route::resource('candidates', 'CandidatesController');
@@ -32,15 +32,12 @@ Route::group(array('prefix' => 'api/v1', 'before' => ''), function() {
 	Route::post('change_password', 'UtilityController@changePassword');
 });
 
-Route::post('/import', function() {
-	$m = Excel::load(Input::file('file')->getRealPath())->toArray();
-	print_r($m);
-	dd();
-	//Excel::load()
-});
 
-Route::get('test2', function() {
-	echo mt_rand(123456, 987654);
+Route::get('/ongoing', function() {
+	return View::make('ongoing');
+});
+Route::get('/close-voting', function() {
+	return View::make('closevoting');
 });
 
 Route::get('/test', function() {
@@ -53,7 +50,16 @@ Route::get('/test', function() {
 	return Redirect::to('/admin');
 });
 
-Route::get('/admin/{path?}', array('before' => 'auth', function ($path = null) {
+Route::get('/admin/logout', function() {
+	if (Input::get('w') == 'open_voting' AND Confide::user())
+		Configuration::set('open_voting', '1', Session::get('user.campus.id'));
+
+	Confide::logout();
+	Session::flush();
+
+	return Redirect::to('/');
+});
+Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($path = null) {
 
 	//$session = Iss\Session::get();
 	$session = Session::get('user');
@@ -62,7 +68,7 @@ Route::get('/admin/{path?}', array('before' => 'auth', function ($path = null) {
 }))->where('path', '.*');
 
 Route::get('/', function()
-{	
+{
 	return Redirect::to('/login');
 });
 
