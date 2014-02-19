@@ -1,0 +1,52 @@
+/* logo */
+.logo {
+  display: inline-block;
+  float: left;
+  background-color: #FFB979;
+  padding: 20px;
+  margin: 0;
+  color: #ffffff;
+  font-size: 16px;
+}
+.controls {
+  padding: 50px 0;
+}
+.position {
+  background-color: #ffffff;
+  border-left: 5px solid #ffb979;
+  margin-top: 20px;  
+}
+.position > h3 {
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+.position .option {
+  padding: 25px 0;
+}
+.position .option ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.position .option ul li {
+  display: inline;
+}
+.position .option ul li button {
+  width: 25%;
+  margin-right: 5%;
+  margin-bottom: 20px;
+}
+.position .option span.candidate-num {
+  float: left;
+  font-size: 18px;
+  line-height: 50px;
+  padding-right: 12px;
+  border-right: 1px solid #eeeeee;
+}
+.modal tr td:first-child {
+  width: 25%;
+}
+.modal ol {
+  padding-left: 16px;
+}

@@ -57,11 +57,11 @@ angular.module('ssg', [
 					reloadOnSearch: false
 				});
 */
-			$routeProvider.when('/admin', {
+			/*$routeProvider.when('/admin', {
 				templateUrl: '/ang/partials/admin/dashboard.html',
 				reloadOnSearch: false
-			});
+			});*/
 			$routeProvider.when('/admin/404', {templateUrl: '/ang/partials/admin/404.html'});
-			$routeProvider.otherwise({redirectTo: '/admin/404'});
+			$routeProvider.otherwise({redirectTo: '/admin/candidates'});
 		}
 	]);
