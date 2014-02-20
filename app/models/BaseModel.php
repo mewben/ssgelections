@@ -10,7 +10,7 @@ class BaseModel extends Eloquent {
 	 */
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)
 	{
-		$count = isset($filters['count']) AND is_numeric($filters['count']) ? $filters['count'] : 20;
+		$count = (isset($filters['count']) AND is_numeric($filters['count'])) ? $filters['count'] : 100;
 		if (isset($filters['filter']) AND $filters['filter'] == 'active')		unset($filters['filter']);
 
 		$model = new static;

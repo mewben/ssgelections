@@ -111,15 +111,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 .post-option { margin-bottom: 3% }
 .postOption button {
-  margin: 0 0 3% 6%;
+  margin: 0 0 3% 0;
   position: relative;
 }
 /*#46719C, #032547*/
-.postOption button p { margin: 0; }
+.postOption button p {
+	font-size: 15px;
+	margin: 0;
+	padding-left: 50px;
+}
 .postOption button span {
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 5%;
+  display: block;
+  height: 30px;
+  width: 30px;
+  padding-top:3px;
+  border: 2px solid @brand-primary;
+  border-radius: 1000px;
+}
+.postOption i.checkmark {display:none;}
+.postOption button.active i.checkmark {
+  display: block;
+  position: absolute;
+  top:28%;
+  right: 0;
+  color: @brand-success;
 }
 
 .ongoing {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="ssg" data-ng-controller="ballotCtrl">
+<html lang="en" data-ng-app="ssg" data-ng-controller="BallotCtrl">
 	<head>
 		<meta charset="utf-8">
 		<title>SSGElections &middot; Bohol Island State University</title>
@@ -20,10 +20,10 @@
 				<br>
 				<br>
 				<div class="col-sm-8 logo">
-					<div class="col-md-2">
+					<div class="col-sm-2">
 						<img class="pull-left" width="75px" src="assets/images/logo_bisu_small.png" alt="Bohol Island State University">
 					</div>
-					<div class="col-md-10">
+					<div class="col-sm-10">
 						<h1>SSG Elections <small>{{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | {{ $session['semester']['sem'] }}</small></h1>
 					</div>
 				</div>
@@ -34,16 +34,19 @@
 
 			<div class="row ballot-body">
 				<form id="ballot" data-ng-submit="submit()">
-					@foreach($options as $key => $option)
-						<div class="postOptions col-md-12">
-							<h3><i class="fa fa-sitemap fa-fw"></i> {{ $option['name'] }}</h3>
+					@foreach($options as $positions)
+						<div class="postOptions col-sm-12" <?php echo $positions['num_winner'] == 1 ? 'radio' : 'check="'. $positions['num_winner'] . '"' ?>>
+							<h3><i class="fa fa-sitemap fa-fw"></i> {{ $positions['name'] }}</h3>
 							<div class="postOption">
-								@foreach($option['options'] as $k => $candidate)
-									<div class="col-md-3">
-										<button type="button" class="btn btn-block btn-primary">
+								@foreach($positions['options'] as $k => $candidate)
+									<div class="col-lg-4">
+										<button type="button" data-cid="<?php echo $candidate['id'] ?>" class="btn btn-lg btn-block btn-primary">
 											<span>{{ $k + 1 }}</span>
-											<p>{{ $candidate['name'] }}</p>
-											<small>{{ $candidate['party']['name'] }}</small>
+											<p>
+												<strong>{{ $candidate['name'] }}</strong>
+												<div><small>{{ $candidate['party']['name'] }}</small></div>
+											</p>
+											<i class="fa fa-check fa-2x checkmark"></i>
 										</button>
 									</div>
 								@endforeach
@@ -52,9 +55,13 @@
 					@endforeach
 
 
-					<div class="controls pull-right">
-						<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-times"></i> Clear</button>
-						<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ballotConfirm"><i class="fa fa-fw fa-check"></i> Cast</button>
+					<div class="col-lg-4 col-lg-offset-4 col-sm-12">
+						<div class="controls text-center">
+							<button type="submit" class="btn btn-warning btn-lg btn-block">
+								<i class="fa fa-arrow-down fa-3x"></i>
+								<div>Cast Ballot</div>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -132,5 +139,69 @@
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tab.js') ?>
 		<?php endif; ?>
+
+		<script>
+angular.module('ssg', [])
+	.controller('BallotCtrl', [
+		'$scope',
+		function ($scope) {
+			$scope.item = [];
+
+			$scope.submit = function() {
+				$scope.item = [];
+				$('#ballot').find('button.active').each(function(index, elem) {
+					$scope.item.push($(elem).data('cid'));
+				});
+				$('#ballotConfirm').modal();
+			};
+		}
+	])
+
+	.directive('radio', [
+		function() {
+			return {
+				restrict: 'A',
+				link: function (scope, elem, attrs) {
+					elem.find('button').bind('click', function() {
+						var on = $(this).hasClass('active');
+
+						elem.find('button').removeClass('active');
+
+						if (!on) { // select
+							$(this).addClass('active');
+						}
+
+					});
+				}
+			};
+		}
+	])
+
+	.directive('check', [
+		function() {
+			return {
+				restrict: 'A',
+				link: function (scope, elem, attrs) {
+					elem.find('button').bind('click', function() {
+						var on = $(this).hasClass('active');
+
+						if (!on) // select
+							$(this).addClass('active');
+						else
+							$(this).removeClass('active');
+
+						// check if maximum is reached
+						if (elem.find('button.active').length == attrs.check) // disable the rest buttons
+							elem.find('button').not('.active').attr('disabled', 'disabled');
+						else
+							elem.find('button').not('.active').removeAttr('disabled');
+
+
+					});
+				}
+			};
+		}
+	]);
+		</script>
 	</body>
 </html>

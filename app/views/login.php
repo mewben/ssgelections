@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="input-group">
+						<div class="input-group input-group-lg">
 							<span class="input-group-addon">
 								<i class="fa fa-user fa-fw fa-1x"></i>
 							</span>
@@ -42,7 +42,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="input-group">
+						<div class="input-group input-group-lg">
 							<span class="input-group-addon">
 								<i class="fa fa-eye-slash fa-fw fa-1x"></i>
 							</span>
@@ -50,7 +50,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-fw fa-1x"></i> Login</button>
+						<button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-sign-in fa-fw fa-1x"></i> Login</button>
 					</div>
 
 				<?php echo Form::close(); ?>

@@ -66,7 +66,7 @@ class User extends ConfideUser implements UserInterface, RemindableInterface {
 	 */
 	public function fetch($filters = NULL)
 	{
-		$count = isset($filters['count']) AND is_numeric($filters['count']) ? $filters['count'] : 20;
+		$count = (isset($filters['count']) AND is_numeric($filters['count'])) ? $filters['count'] : 100;
 		if (isset($filters['filter']) AND $filters['filter'] == 'active')		unset($filters['filter']);
 
 		$model = new static;

@@ -46,5 +46,12 @@
 	</script>
 	<?php echo HTML::script('assets/js/jquery-2.0.3.min.js') ?>
 	<?php echo HTML::script('assets/js/angular-1.2.12/angular.js') ?>
-	<?php echo HTML::script('ang/results.js') ?>
+
+	<script>
+function ResultCtrl($scope)
+{
+	$scope.data = window.data;
+	$scope.session = window.session;
+}
+	</script>
 @stop

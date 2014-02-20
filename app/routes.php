@@ -34,8 +34,12 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 });
 
 Route::any('/close-voting', 'UtilityController@closeVoting');
-
 Route::get('/results', 'UtilityController@results');
+Route::get('/ongoing', function() {
+	return View::make('ongoing');
+});
+
+
 
 Route::get('/test', function() {
 	if (App::environment('production')) 	return Redirect::to('/admin');
@@ -65,19 +69,6 @@ Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($p
 }))->where('path', '.*');
 
 Route::get('/', 'BallotsController@index');
-
-// Route::get('/', function()
-// {	
-// 	if(Session::has('voter')){
-// 		$session = Session::get('voter');
-// 		$position = Position::with('Candidate')->get();
-// 		return View::make('layouts.client', compact('session', 'position'));
-// 	}
-// 	else
-// 	{
-// 		return Redirect::to('login');
-// 	}
-// });
 
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');

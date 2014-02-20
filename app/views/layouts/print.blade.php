@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>ISS &middot; Bohol Island State University</title>
+		<title>SSGElections &middot; Bohol Island State University</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<?php echo HTML::style('assets/css/print.min.css') ?>
 	</head>
