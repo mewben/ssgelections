@@ -85,3 +85,8 @@ Route::filter('closedvoting', function()
 	if (Configuration::where('name', '=', 'open_voting')->where('campus_id', '=', Session::get('user.campus.id'))->first())
 		return Redirect::to('/ongoing');
 });
+
+Route::filter('voterloggedin', function() {
+	if(!Session::has('voter'))
+		return Redirect::to('/login');
+});

@@ -11,16 +11,14 @@ class BallotsController extends BaseController {
 
 	public function index()
 	{
-		//return View::make('cast', compact('session', 'positions'));
-		if(Session::has('voter')){
-			$session = Session::get('voter');
-			$options = Ballot::getOptions();
+		$session = Session::get('voter');
+		$options = Ballot::getOptions();
 
-			return View::make('client', compact('options', 'session'));
-		}
-		else
-		{
-			return Redirect::to('login');
-		}
+		return View::make('client', compact('options', 'session'));
+	}
+
+	public function cast()
+	{
+		return Response::json(Ballot::cast(Input::all()), 200);
 	}
 }

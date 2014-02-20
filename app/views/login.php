@@ -6,13 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<?php if (App::environment('production')): ?>
-			<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-		<?php else: ?>
-			<?php echo HTML::style('assets/css/font-awesome.css') ?>
-		<?php endif; ?>
-
-		<?php echo HTML::style('assets/css/admin.css') ?>
+		<?php echo HTML::style('assets/css/font-awesome.css') ?>
 		<?php echo HTML::style('assets/css/client.css') ?>
 		<!--[if lt IE 9]>
 		    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -20,7 +14,7 @@
 		<![endif]-->
 	</head>
 	<body>
-		
+
 		<div class="container">
 			<div class="login-form col-md-4 col-md-offset-4">
 				<?php echo Form::open(['route' => 'sessions.store', 'method' => 'post', 'role' => 'form', 'class' => 'login form-horizontal']); ?>
@@ -30,7 +24,7 @@
 							<h1><strong>Login</strong></h1>
 						</div>
 						<div class="col-md-6">
-							<img class="pull-right" src="assets/images/logo_bisu_small.png" alt="BISU" width=75px>
+							<img class="pull-right" src="assets/images/logo_bisu_small.png" alt="BISU" width="75px">
 						</div>
 					</div>
 					<div class="form-group">
@@ -38,7 +32,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-user fa-fw fa-1x"></i>
 							</span>
-							<input type="text" name="id" id="id" class="form-control" placeholder="Voter ID">
+							<input type="text" name="id" id="id" class="form-control" placeholder="Voter ID" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -46,9 +40,12 @@
 							<span class="input-group-addon">
 								<i class="fa fa-eye-slash fa-fw fa-1x"></i>
 							</span>
-							<input type="password" name="passcode" id="passcode" class="form-control" placeholder="Passcode">
+							<input type="password" name="passcode" id="passcode" class="form-control" placeholder="Passcode" required>
 						</div>
 					</div>
+					<?php if(Session::has('error')): ?>
+						<div class="form-group"><i class="basic attention circle icon"></i>	<?php echo Session::get('error') ?></div>
+					<?php endif; ?>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-sign-in fa-fw fa-1x"></i> Login</button>
 					</div>

@@ -11,6 +11,7 @@
 |
 */
 
+// API V1
 Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 
 	Route::resource('campuses', 'CampusesController');
@@ -33,15 +34,43 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 	Route::get('results', 'UtilityController@results'); // when accessed from admin
 });
 
+
+// ADMIN
+Route::get('/admin/logout', function() {
+	if (Input::get('w') == 'open_voting' AND Confide::user())
+		Configuration::set('open_voting', Session::get('user.sem.id'), Session::get('user.campus.id'));
+
+	Confide::logout();
+	Session::flush();
+
+	return Redirect::to('/');
+});
+Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($path = null) {
+
+	$session = Session::get('user');
+	return View::make('layouts.admin', compact('session'));
+
+}))->where('path', '.*');
+
+
+// ETC
+Route::get('login', 'SessionsController@create');
+Route::post('login', 'SessionsController@store');
+Route::get('logout', 'SessionsController@logout');
+Route::resource('sessions', 'SessionsController');
+
 Route::get('/ongoing', function()
 {
 	return View::make('ongoing');
 });
-
 Route::any('/close-voting', 'UtilityController@closeVoting');
 Route::get('/results', 'UtilityController@results');
-Route::get('/ongoing', function() {
-	return View::make('ongoing');
+
+Route::group(array('before' => 'voterloggedin'), function() {
+
+	Route::get('/', 'BallotsController@index');
+	Route::post('/cast', 'BallotsController@cast');
+
 });
 
 
@@ -55,27 +84,3 @@ Route::get('/test', function() {
 	Utility::getSession();
 	return Redirect::to('/admin');
 });
-
-Route::get('/admin/logout', function() {
-	if (Input::get('w') == 'open_voting' AND Confide::user())
-		Configuration::set('open_voting', '1', Session::get('user.campus.id'));
-
-	Confide::logout();
-	Session::flush();
-
-	return Redirect::to('/');
-});
-Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($path = null) {
-
-	//$session = Iss\Session::get();
-	$session = Session::get('user');
-	return View::make('layouts.admin', compact('session'));
-
-}))->where('path', '.*');
-
-Route::get('/', 'BallotsController@index');
-
-Route::get('login', 'SessionsController@create');
-Route::post('login', 'SessionsController@store');
-Route::get('logout', 'SessionsController@logout');
-Route::resource('sessions', 'SessionsController');

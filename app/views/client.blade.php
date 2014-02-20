@@ -107,23 +107,25 @@
 				    		</div>
 				    		<div class="modal-body">
 				    			<div class="heading text-center">
-				    				<img src="assets/images/logo_bisu_small.png" alt="BISU" width=50px>
+				    				<img src="assets/images/logo_bisu_small.png" alt="BISU" width="50px">
 				    				<h3>SSG Election</h3>
 				    				<p><strong>Bohol Island State University</strong></p>
 				    				<small>SY: {{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | Semester: {{ $session['semester']['sem'] }}</small>
 				    			</div>
 				        		<table class="confirm">
-				        			@foreach($candidates as $k => $v)
-				        			<tr>
-				        				<td><strong>{{$v['post']}}</strong>:</td>
-				        				<td>{{$v['name']}}</td>
+				        			<tr data-ng-repeat="position in data">
+				        				<td valign="top"><strong>@{{position.name}}</strong></td>
+				        				<td>
+				        					<div data-ng-repeat="option in position.options" data-ng-if="option.active">
+				        						@{{option.name}}
+				        					</div>
+				        				</td>
 				        			</tr>
-				        			@endforeach
 				        		</table>
 				      		</div>
 				      		<div class="modal-footer">
-				        		<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Change</button>
-				        		<button type="button" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Confirm</button>
+				        		<button type="button" class="btn btn-lg btn-danger" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Change</button>
+				        		<button type="button" data-ng-click="confirm()" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-check"></i> Confirm &amp; Log out</button>
 				      		</div>
 				    	</div><!-- /.modal-content -->
 				  	</div><!-- /.modal-dialog -->
@@ -159,10 +161,17 @@
 		<?php endif; ?>
 
 		<script>
+			window.data = <?php echo json_encode($options) ?>;
+		</script>
+
+		<script>
 angular.module('ssg', [])
 	.controller('BallotCtrl', [
 		'$scope',
-		function ($scope) {
+		'$http',
+		'$window',
+		function ($scope, $http, $window) {
+			$scope.data = window.data;
 			$scope.item = [];
 
 			$scope.submit = function() {
@@ -170,7 +179,24 @@ angular.module('ssg', [])
 				$('#ballot').find('button.active').each(function(index, elem) {
 					$scope.item.push($(elem).data('cid'));
 				});
+				angular.forEach($scope.data, function (value, key) {
+					angular.forEach(value.options, function (v2, k2) {
+						v2.active = undefined;
+						if ($scope.item.indexOf(v2.id) != '-1')
+							v2.active = true;
+					});
+				});
 				$('#ballotConfirm').modal();
+			};
+
+			$scope.confirm = function() {
+				$http.post('/cast', $scope.item)
+					.success(function(result) {
+						$window.location.href = '/';
+					})
+					.error(function(err) {
+						alert(err.error.message);
+					});
 			};
 		}
 	])

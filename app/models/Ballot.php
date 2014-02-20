@@ -112,4 +112,33 @@ class Ballot extends BaseModel {
 		return 1;
 	}
 
+	public static function cast($data)
+	{
+		$voter_id = Session::get('voter.id');
+		$sem_id = Session::get('voter.semester.id');
+		$now = date('Y-m-d H:i:s');
+
+		// check if already voted
+		$voter = Voter::findOrFail($voter_id);
+		if ($voter->voted != NULL)	throw new Exception('Already voted!', 400);
+
+		// save the candidate ids with voter_id
+		foreach($data as $cid) {
+			DB::table('ballots')->insert(array(
+				'voter_id' => $voter_id,
+				'candidate_id' => $cid,
+				'sem_id' => $sem_id,
+				'created_at' => $now,
+				'updated_at' => $now
+				));
+		}
+
+		$voter->voted = true;
+		$voter->save();
+
+		// flush session
+		Session::flush();
+
+		return 1;
+	}
 }
