@@ -97,8 +97,3 @@ Route::get('que', function()
  	$var = Position::with('Candidate')->get();
  	return $var;
 });
-
-Route::get('ongoing', function()
-{
-	return View::make('ongoing');
-});

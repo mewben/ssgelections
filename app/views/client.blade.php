@@ -6,11 +6,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<?php if (App::environment('production')): ?>
-			<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-		<?php else: ?>
-			<?php echo HTML::style('assets/css/font-awesome.css') ?>
-		<?php endif; ?>
+		<?php echo HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') ?>
+		<?php echo HTML::style('assets/css/font-awesome.css') ?>
 		<?php echo HTML::style('assets/css/client.css') ?>
 		<!--[if lt IE 9]>
 		    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -23,8 +20,15 @@
 			<div class="row ballot-header">
 				<br>
 				<br>
-				<h1 class="col-md-4">SSG Elections <small>2013-2014 | 2</small></h1>
-				<p class="col-md-4 col-md-offset-4"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
+				<div class="col-md-6 logo">
+					<div class="col-md-2">
+						<img class="pull-left" width="75px" src="assets/images/logo_bisu_small.png" alt="Bohol Island State University">
+					</div>
+					<div class="col-md-10">
+						<h1>SSG Elections <small>{{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | {{ $session['semester']['sem'] }}</small></h1>
+					</div>
+				</div>
+				<p class="col-md-4 col-md-offset-2"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
 				<br>
 				<br>
 			</div>
@@ -36,11 +40,13 @@
 							<h3><i class="fa fa-sitemap fa-fw"></i> {{ $option['name'] }}</h3>
 							<div class="postOption">
 								@foreach($option['options'] as $k => $candidate)
-									<button type="button" class="btn btn-primary col-md-3">
-										<span>{{ $k + 1 }}</span>
-										<p><strong>{{ $candidate['name'] }}</strong></p>
-										<small>Party-People</small>
-									</button>
+									<div class="col-md-3">
+										<button type="button" class="btn btn-block btn-primary">
+											<span>{{ $k + 1 }}</span>
+											<p><strong>{{ $candidate['name'] }}</strong></p>
+											<small>{{ $candidate['party']['name'] }}</small>
+										</button>
+									</div>
 								@endforeach
 							</div>
 						</div>

@@ -15,7 +15,8 @@ class BallotsController extends BaseController {
 		if(Session::has('voter')){
 			$session = Session::get('voter');
 			$options = Ballot::getOptions();
-			return View::make('client', compact('session', 'options'));
+
+			return View::make('client', compact('options', 'session'));
 		}
 		else
 		{
