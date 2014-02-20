@@ -19,23 +19,29 @@ class SessionsController extends BaseController {
 		$input = Input::all();
 		$rules = ['id' => 'required', 'passcode' => 'required'];
 
-		$data = Voter::where('id', '=', $input['id'])
-						->where('passcode', '=', $input['passcode'])
-						->first();
 
-		$session = Voter::where('id', '=', $input['id'])
-						->with('semester')
-						->first();
 
 		$validation = Validator::make($input, $rules);
 		if($validation->fails())
 		{
-			return Redirect::to('/login');
+			return Redirect::back()->withErrors($validation->messages());
 		}
-		elseif($data)
-		{
-			Session::put('voter', $session->toArray());
-			return Redirect::to('/');
+		else {
+			$data = Voter::where('id', '=', $input['id'])
+						->where('passcode', '=', $input['passcode'])
+						->first();
+
+			$session = Voter::where('id', '=', $input['id'])
+						->with('semester')
+						->first();
+
+			if($data) {
+				Session::put('voter', $session->toArray());
+				return Redirect::to('/');
+			}
+			else {
+				return Redirect::to('/login');
+			}
 		}
 	}
 
