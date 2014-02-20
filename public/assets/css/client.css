@@ -2788,6 +2788,28 @@ h6 {
   right: 0;
   color: #5cb85c;
 }
+.modal {
+  color: #000000;
+}
+.modal table {
+  margin: 0 auto;
+}
+.modal table tr td {
+  padding: 10px;
+}
+.modal table tr td:first-child {
+  text-align: right;
+}
+.modal table tr td:last-child {
+  text-transform: uppercase;
+}
+div.heading {
+  margin-bottom: 5%;
+}
+div.heading h3,
+div.heading p {
+  margin: 0;
+}
 .ongoing {
   margin-top: 10%;
 }

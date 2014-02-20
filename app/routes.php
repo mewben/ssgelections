@@ -33,6 +33,11 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 	Route::get('results', 'UtilityController@results'); // when accessed from admin
 });
 
+Route::get('/ongoing', function()
+{
+	return View::make('ongoing');
+});
+
 Route::any('/close-voting', 'UtilityController@closeVoting');
 Route::get('/results', 'UtilityController@results');
 Route::get('/ongoing', function() {
@@ -74,15 +79,3 @@ Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@logout');
 Route::resource('sessions', 'SessionsController');
-
-// DEV ONLY
-
-Route::get('/vote', function(){
-	return View::make('layouts.ballot');
-});
-
-Route::get('que', function()
-{
- 	$var = Position::with('Candidate')->get();
- 	return $var;
-});

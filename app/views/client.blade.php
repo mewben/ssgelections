@@ -14,6 +14,39 @@
 		<![endif]-->
 	</head>
 	<body>
+		<?php $candidates = [
+				[
+					'id' => '1',
+					'post' => 'President',
+					'name' => 'Soldia, Melvin',
+					'part' => 'Una'
+				],
+				[
+					'id' => '2',
+					'post' => 'Vice-President',
+					'name' => 'Libay, Phillip Glenn',
+					'part' => 'Segundo'
+				],
+				[
+					'id' => '3',
+					'post' => "Senator",
+					'name' => 'Bunales, Christian Dave',
+					'part' => 'Tulo'
+				],
+				[
+					'id' => '4',
+					'post' => 'Governor',
+					'name' => 'Paas, Hermes',
+					'part' => 'Upat'
+				],
+				[
+					'id' => '5',
+					'post' => 'Representative',
+					'name' => 'Boron, John Fernie',
+					'part' => 'Five'
+				]
+			]; ?>
+
 		<!-- Main -->
 		<div class="container">
 			<div class="row ballot-header">
@@ -73,34 +106,19 @@
 				    			<h4 class="modal-title"><strong>Ballot Confirmation</strong></h4>
 				    		</div>
 				    		<div class="modal-body">
-				        		<table class='table table-striped'>
+				    			<div class="heading text-center">
+				    				<img src="assets/images/logo_bisu_small.png" alt="BISU" width=50px>
+				    				<h3>SSG Election</h3>
+				    				<p><strong>Bohol Island State University</strong></p>
+				    				<small>SY: {{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | Semester: {{ $session['semester']['sem'] }}</small>
+				    			</div>
+				        		<table class="confirm">
+				        			@foreach($candidates as $k => $v)
 				        			<tr>
-				        				<td>President:</td>
-				        				<td>Melvin Soldia</td>				        				
+				        				<td><strong>{{$v['post']}}</strong>:</td>
+				        				<td>{{$v['name']}}</td>
 				        			</tr>
-				        			<tr>
-				        				<td>Vice-President:</td>
-				        				<td>Phillip Glenn Libay</td>				        				
-				        			</tr>
-				        			<tr>
-				        				<td>Senators:</td>
-				        				<td>
-				        					<ol>
-				        						<li>Melvin Soldia</li>
-				        						<li>Phillip Glenn Libay</li>
-				        						<li>Christian Dave Bunales</li>
-				        						<li>John Fernie Boron</li>
-				        					</ol>
-				        				</td>
-				        			</tr>
-				        			<tr>
-				        				<td>Governor:</td>
-				        				<td>John Fernie Boron</td>
-				        			</tr>
-				        			<tr>
-				        				<td>Representative:</td>
-				        				<td>Christian Dave Bunales</td>
-				        			</tr>
+				        			@endforeach
 				        		</table>
 				      		</div>
 				      		<div class="modal-footer">
