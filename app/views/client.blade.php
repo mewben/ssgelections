@@ -11,8 +11,6 @@
 		<?php else: ?>
 			<?php echo HTML::style('assets/css/font-awesome.css') ?>
 		<?php endif; ?>
-
-		<?php echo HTML::style('assets/css/admin.css') ?>
 		<?php echo HTML::style('assets/css/client.css') ?>
 		<!--[if lt IE 9]>
 		    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -20,53 +18,39 @@
 		<![endif]-->
 	</head>
 	<body>
-		<!-- Navbar -->
-		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
-			<div class="container">
-				<div class="navheader">
-					<p class="logo"><i class="fa fa-archive fa-2x"></i> SSG Elections</p>
-				</div>	
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="#">
-							<i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }}
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-user fa-fw fa-1x"></i> Voter Name: {{ $session['lname'] }}, {{ $session['fname'] }} {{ $session['mname'] }}
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div> <!-- end navbar -->
-
 		<!-- Main -->
-		<div class="main container">
-			<?php echo Form::open(['url' => '', 'method' => 'post', 'role' => 'form', 'class' => '']) ?>
-				@foreach($options as $key => $option)
-					<div class="position col-md-12">
-						<h3><i class="fa fa-user fa-fw"></i> {{ $option['name'] }}</h3>
-						<div class="option">
-							<ul>
+		<div class="container">
+			<div class="row ballot-header">
+				<br>
+				<br>
+				<h1 class="col-md-4">SSG Elections <small>2013-2014 | 2</small></h1>
+				<p class="col-md-4 col-md-offset-4"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
+				<br>
+				<br>
+			</div>
+
+			<div class="row ballot-body">
+				<?php echo Form::open(['url' => '', 'method' => 'post', 'role' => 'form', 'class' => '']) ?>
+					@foreach($options as $key => $option)
+						<div class="postOptions col-md-12">
+							<h3><i class="fa fa-sitemap fa-fw"></i> {{ $option['name'] }}</h3>
+							<div class="postOption">
 								@foreach($option['options'] as $k => $candidate)
-									<li>
-										<button type="button" class="btn btn-primary">
-											<span class="candidate-num">{{ $k + 1 }}</span>
-											<p class="candidate-name"><strong>{{ $candidate['name'] }}</strong></p>
-											<small class="candidate-party">Party-People</small>
-										</button>
-									</li>
+									<button type="button" class="btn btn-primary col-md-3">
+										<span>{{ $k + 1 }}</span>
+										<p><strong>{{ $candidate['name'] }}</strong></p>
+										<small>Party-People</small>
+									</button>
 								@endforeach
-							</ul>
+							</div>
 						</div>
+					@endforeach
+
+
+					<div class="controls pull-right">
+						<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-times"></i> Clear</button>
+						<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ballotConfirm"><i class="fa fa-fw fa-check"></i> Cast</button>
 					</div>
-				@endforeach
-
-
-				<div class="controls pull-right">
-					<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-times"></i> Clear</button>
-					<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ballotConfirm"><i class="fa fa-fw fa-check"></i> Cast</button>
 				</div>
 
 				<div class="modal fade" id="ballotConfirm" tabindex="-1" role="dialog" aria-labelledby="ballotConfirmLabel" aria-hidden="true">
