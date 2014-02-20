@@ -88,15 +88,3 @@ Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@logout');
 Route::resource('sessions', 'SessionsController');
-
-// DEV ONLY
-
-Route::get('/vote', function(){
-	return View::make('layouts.ballot');
-});
-
-Route::get('que', function()
-{
- 	$var = Position::with('Candidate')->get();
- 	return $var;
-});
