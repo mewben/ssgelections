@@ -25,8 +25,13 @@
 			<div class="login-form col-md-4 col-md-offset-4">
 				<?php echo Form::open(['route' => 'sessions.store', 'method' => 'post', 'role' => 'form', 'class' => 'login form-horizontal']); ?>
 
-					<div class="form-group">
-						<h1>Login</h1>
+					<div class="row form-group">
+						<div class="col-md-6">
+							<h1><strong>Login</strong></h1>
+						</div>
+						<div class="col-md-6">
+							<img class="pull-right" src="assets/images/logo_bisu_small.png" alt="BISU" width=75px>
+						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
@@ -49,6 +54,13 @@
 					</div>
 
 				<?php echo Form::close(); ?>
+				<br>
+				<br>
+				<div class="text-center footer">
+					<p>Bohol Island State University</p>
+					<p>Automated SSG Election</p>
+					<p>Copyright &copy; 2014</p>
+				</div>
 			</div>
 		</div>
 

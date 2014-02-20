@@ -23,6 +23,10 @@ class SessionsController extends BaseController {
 						->where('passcode', '=', $input['passcode'])
 						->first();
 
+		$session = Voter::where('id', '=', $input['id'])
+						->with('semester')
+						->first();
+
 		$validation = Validator::make($input, $rules);
 		if($validation->fails())
 		{
@@ -30,7 +34,7 @@ class SessionsController extends BaseController {
 		}
 		elseif($data)
 		{
-			Session::put('voter', $data->toArray());
+			Session::put('voter', $session->toArray());
 			return Redirect::to('/');
 		}
 	}

@@ -19,7 +19,7 @@ class Position extends BaseModel {
 
 	public function options()
 	{
-		return $this->hasMany('Candidate')->whereSemId(Session::get('voter.sem_id'))->orderBy('name');
+		return $this->hasMany('Candidate')->with('party')->whereSemId(Session::get('voter.sem_id'))->orderBy('name');
 	}
 
 	public function college()

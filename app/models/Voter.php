@@ -19,6 +19,11 @@ class Voter extends BaseModel {
 		return $this->belongsTo('College');
 	}
 
+	public function semester()
+	{
+		return $this->belongsTo('Semester', 'sem_id');
+	}
+
 	public static function getAll()
 	{
 		if (!Session::has('user.sem.id'))	throw new Exception("No semester code selected.", 409);

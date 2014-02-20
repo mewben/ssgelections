@@ -17,8 +17,8 @@
 						<div class="ongoing text-center">
 							<div class="body">
 								<img src="assets/images/logo_bisu_small.png" alt="">
-								<h1>SSG Elections is Ongoing</h1>
-								<p>Access to administration panel is not allowed. Please wait untill election is over.</p>
+								<h1><strong>SSG Election is Ongoing.</strong></h1>
+								<p>Access to administration panel is not allowed. Please wait until the election is over.</p>
 							</div>
 
 							<div class="footer">
