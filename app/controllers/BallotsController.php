@@ -11,7 +11,7 @@ class BallotsController extends BaseController {
 
 	public function index()
 	{
-		return View::make('cast', compact('session', 'positions'));
+		//return View::make('cast', compact('session', 'positions'));
 		if(Session::has('voter')){
 			$session = Session::get('voter');
 			$options = Ballot::getOptions();

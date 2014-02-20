@@ -6,7 +6,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<?php echo HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') ?>
 		<?php echo HTML::style('assets/css/font-awesome.css') ?>
 		<?php echo HTML::style('assets/css/client.css') ?>
 		<!--[if lt IE 9]>
@@ -20,7 +19,7 @@
 			<div class="row ballot-header">
 				<br>
 				<br>
-				<div class="col-md-6 logo">
+				<div class="col-sm-8 logo">
 					<div class="col-md-2">
 						<img class="pull-left" width="75px" src="assets/images/logo_bisu_small.png" alt="Bohol Island State University">
 					</div>
@@ -28,13 +27,13 @@
 						<h1>SSG Elections <small>{{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | {{ $session['semester']['sem'] }}</small></h1>
 					</div>
 				</div>
-				<p class="col-md-4 col-md-offset-2"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
+				<p class="col-sm-4 text-right"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
 				<br>
 				<br>
 			</div>
 
 			<div class="row ballot-body">
-				<?php echo Form::open(['url' => '', 'method' => 'post', 'role' => 'form', 'class' => '']) ?>
+				<form id="ballot" data-ng-submit="submit()">
 					@foreach($options as $key => $option)
 						<div class="postOptions col-md-12">
 							<h3><i class="fa fa-sitemap fa-fw"></i> {{ $option['name'] }}</h3>
@@ -43,7 +42,7 @@
 									<div class="col-md-3">
 										<button type="button" class="btn btn-block btn-primary">
 											<span>{{ $k + 1 }}</span>
-											<p><strong>{{ $candidate['name'] }}</strong></p>
+											<p>{{ $candidate['name'] }}</p>
 											<small>{{ $candidate['party']['name'] }}</small>
 										</button>
 									</div>
@@ -104,7 +103,7 @@
 				    	</div><!-- /.modal-content -->
 				  	</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
-			<?php echo Form::close() ?>
+			</form>
 		</div> <!-- end main -->
 
 		<?php if (App::environment('production')) : ?>
