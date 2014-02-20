@@ -33,6 +33,11 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 	Route::get('results', 'UtilityController@results'); // when accessed from admin
 });
 
+Route::get('/ongoing', function()
+{
+	return View::make('ongoing');
+});
+
 Route::any('/close-voting', 'UtilityController@closeVoting');
 
 Route::get('/results', 'UtilityController@results');
