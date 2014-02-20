@@ -34,9 +34,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 });
 
 Route::any('/close-voting', 'UtilityController@closeVoting');
-Route::get('/ongoing', function() {
-	return View::make('ongoing');
-});
+
 Route::get('/results', 'UtilityController@results');
 
 Route::get('/test', function() {

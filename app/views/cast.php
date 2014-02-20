@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app data-ng-controller="BallotCtrl">
+<html lang="en" ng-app="app" data-ng-controller="BallotCtrl">
 	<head>
 		<meta charset="utf-8">
 		<title>SSGElections &middot; Bohol Island State University</title>
@@ -8,7 +8,7 @@
 
 		<?php echo HTML::style('assets/css/font-awesome.css') ?>
 		<?php echo HTML::style('assets/css/client.min.css') ?>
-		<?php echo HTML::style('assets/css/client2.css') ?>
+		<?php echo HTML::style('assets/css/client.css') ?>
 		<!--[if lt IE 9]>
 		    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -17,22 +17,27 @@
 	<body>
 		<?php $candidates = [
 				[
+					'id' => '1',
 					'name' => 'Soldia, Melvin',
 					'party' => 'LP'
 				],
 				[
+					'id' => '2',
 					'name' => 'Libay, Phillip Glenn',
 					'party' => 'UNA'
 				],
 				[
+					'id' => '3',
 					'name' => 'Libay, Phillip Glenn',
 					'party' => 'UNA'
 				],
 				[
+					'id' => '4',
 					'name' => 'Libay, Phillip Glenn',
 					'party' => 'UNA'
 				],
 				[
+					'id' => '5',
 					'name' => 'Libay, Phillip Glenn',
 					'party' => 'UNA'
 				]
@@ -45,17 +50,34 @@
 					
 					<br>
 					<br>
+					<form id="ballot" data-ng-submit="submit()">
+						<div class="position" radio>
+							<h1>President</h1>
+							<div class="row">
+								<?php foreach($candidates as $k => $v): ?>
+									<div class="col-sm-4">
+										<button type="button" data-cid="<?php echo $v['id'] ?>" class="btn btn-primary btn-lg btn-block">
+											<?php echo $v['name'] ?>
+										</button>
+									</div>
+								<?php endforeach ?>
+							</div>
+						</div>
 
-					<div class="position">
-							<?php foreach($candidates as $k => $v): ?>
-								<div class="col-sm-4">
-									<button type="button" class="btn btn-primary btn-lg btn-block">
-										<?php echo $v['name'] ?>
-									</button>
-								</div>
-							<?php endforeach ?>
-							<div class="clearfix"></div>
-					</div>
+						<div class="position" check="3">
+							<h1>Senator</h1>
+							<div class="row">
+								<?php foreach($candidates as $k => $v): ?>
+									<div class="col-sm-4">
+										<button type="button" data-cid="<?php echo $v['id'] ?>" class="btn btn-primary btn-lg btn-block">
+											<?php echo $v['name'] ?>
+										</button>
+									</div>
+								<?php endforeach ?>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-large btn-primary">Cast Ballot</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -360,11 +382,75 @@
 		<?php endif; ?>
 
 		<script>
-			$(document).ready(function() {
-				$('button[type=button]').on('click',function() {
-					alert('clkdjf');
+			/*$(document).ready(function() {
+				$('.radio button').on('click',function() {
+					$(this).parents('.radio').find('button').removeClass('active');
+					$(this).addClass('active');
+					//$(this).parent().parentsiblings().attr('disabled');
 				});
-			});
+			});*/
+
+angular.module('app', [])
+	.controller('BallotCtrl', [
+		'$scope',
+		function ($scope) {
+			$scope.item = [];
+
+			$scope.submit = function() {
+				$scope.item = [];
+				$('#ballot').find('button.active').each(function(index, elem) {
+					$scope.item.push($(elem).data('cid'));
+				});
+				console.log($scope.item);
+			};
+		}
+	])
+
+	.directive('radio', [
+		function() {
+			return {
+				restrict: 'A',
+				link: function (scope, elem, attrs) {
+					elem.find('button').bind('click', function() {
+						var on = $(this).hasClass('active');
+
+						elem.find('button').removeClass('active');
+
+						if (!on) { // select
+							$(this).addClass('active');
+						}
+
+					});
+				}
+			};
+		}
+	])
+
+	.directive('check', [
+		function() {
+			return {
+				restrict: 'A',
+				link: function (scope, elem, attrs) {
+					elem.find('button').bind('click', function() {
+						var on = $(this).hasClass('active');
+
+						if (!on) // select
+							$(this).addClass('active');
+						else
+							$(this).removeClass('active');
+
+						// check if maximum is reached
+						if (elem.find('button.active').length == attrs.check) // disable the rest buttons
+							elem.find('button').not('.active').attr('disabled', 'disabled');
+						else
+							elem.find('button').not('.active').removeAttr('disabled');
+
+
+					});
+				}
+			};
+		}
+	]);
 		</script>
 	</body>
 </html>
