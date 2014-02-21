@@ -43,6 +43,7 @@ class Ballot extends BaseModel {
 		$model = $model->where('campus_id', '=', Session::get('user.campus.id'));
 
 		$model = $model->orderBy('order');
+		$model = $model->orderBy('code');
 		$result = $model->get()->toArray();
 
 		foreach ($result as $kp => $positions) {

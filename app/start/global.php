@@ -48,7 +48,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Illuminate\Database\QueryException $exception, $code)
 {
-	/*switch ($exception->getCode()) {
+	switch ($exception->getCode()) {
 		case 23505:
 			return Response::json('Database error! The input you entered already exists in the database.', 400);
 			break;
@@ -58,7 +58,7 @@ App::error(function(Illuminate\Database\QueryException $exception, $code)
 		default:
 			return Response::json("Database error! Error code: " . $exception->getCode(), 400);
 			break;
-	}*/
+	}
 });
 
 

@@ -52,7 +52,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr data-ng-repeat="i in items.data | orderBy:'order' | filter:search">
+				<tr data-ng-repeat="i in items.data | orderBy:['order', 'code'] | filter:search">
 					<td>{{$index + 1}}.</td>
 					<td><strong>{{i.code}}</strong></td>
 					<td>{{i.name}}</td>

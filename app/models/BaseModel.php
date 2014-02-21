@@ -10,7 +10,7 @@ class BaseModel extends Eloquent {
 	 */
 	public function fetch($filters = NULL, $with = NULL, $where = NULL)
 	{
-		$count = (isset($filters['count']) AND is_numeric($filters['count'])) ? $filters['count'] : 100;
+		$count = (isset($filters['count']) AND is_numeric($filters['count'])) ? $filters['count'] : 200;
 		if (isset($filters['filter']) AND $filters['filter'] == 'active')		unset($filters['filter']);
 
 		$model = new static;
@@ -95,7 +95,13 @@ class BaseModel extends Eloquent {
 
 		if (isset($campus_id))		$model = $model->where('campus_id', '=', $campus_id);
 
-		$model = $model->orderBy($orderBy);
+		if (is_array($orderBy)) {
+			foreach ($orderBy as $o) {
+				$model = $model->orderBy($o);
+			}
+		} else {
+			$model = $model->orderBy($orderBy);
+		}
 
 		$result['data'] = $model->get($fields)->toArray();
 

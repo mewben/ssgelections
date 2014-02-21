@@ -51,6 +51,6 @@ class Position extends BaseModel {
 	 */
 	public function getList()
 	{
-		return parent::fetchList(array('code', 'name', 'id'), 'order', Session::get('user.campus.id'));
+		return parent::fetchList(array('code', 'name', 'id'), array('order', 'code'), Session::get('user.campus.id'));
 	}
 }
