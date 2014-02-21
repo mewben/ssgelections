@@ -33,7 +33,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr data-ng-repeat="candidates in positions.candidates | orderBy: '-results'">
+				<tr data-ng-repeat="candidates in positions.candidates | orderBy: ['-results', 'name']">
 					<td>{{$index + 1}}.</td>
 					<td>{{candidates.name}}</td>
 					<td>{{candidates.party.code}}</td>
