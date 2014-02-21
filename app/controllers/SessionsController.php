@@ -42,6 +42,6 @@ class SessionsController extends BaseController {
 	public function logout()
 	{
 		Session::flush();
-		return Redirect::to('/login');
+		return Redirect::to('/success');
 	}
 }

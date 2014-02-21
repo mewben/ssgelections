@@ -63,6 +63,11 @@ Route::get('/ongoing', function()
 {
 	return View::make('ongoing');
 });
+Route::get('/success', function()
+{
+	return View::make('success');
+});
+
 Route::any('/close-voting', 'UtilityController@closeVoting');
 Route::get('/results', 'UtilityController@results');
 

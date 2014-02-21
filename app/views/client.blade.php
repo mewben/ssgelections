@@ -14,39 +14,6 @@
 		<![endif]-->
 	</head>
 	<body>
-		<?php $candidates = [
-				[
-					'id' => '1',
-					'post' => 'President',
-					'name' => 'Soldia, Melvin',
-					'part' => 'Una'
-				],
-				[
-					'id' => '2',
-					'post' => 'Vice-President',
-					'name' => 'Libay, Phillip Glenn',
-					'part' => 'Segundo'
-				],
-				[
-					'id' => '3',
-					'post' => "Senator",
-					'name' => 'Bunales, Christian Dave',
-					'part' => 'Tulo'
-				],
-				[
-					'id' => '4',
-					'post' => 'Governor',
-					'name' => 'Paas, Hermes',
-					'part' => 'Upat'
-				],
-				[
-					'id' => '5',
-					'post' => 'Representative',
-					'name' => 'Boron, John Fernie',
-					'part' => 'Five'
-				]
-			]; ?>
-
 		<!-- Main -->
 		<div class="container">
 			<div class="row ballot-header">
@@ -192,7 +159,7 @@ angular.module('ssg', [])
 			$scope.confirm = function() {
 				$http.post('/cast', $scope.item)
 					.success(function(result) {
-						$window.location.href = '/';
+						$window.location.href = '/success';
 					})
 					.error(function(err) {
 						alert(err.error.message);
