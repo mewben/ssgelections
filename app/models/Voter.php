@@ -82,7 +82,7 @@ class Voter extends BaseModel {
 		// get all voters in sem_id
 		$data = static::where('sem_id', '=', Session::get('user.sem.id'))->get(array('id'))->toArray();
 		foreach ($data as $key => $value) {
-			DB::table('voters')->where('id', '=', $value['id'])->update(array('passcode' => mt_rand(123456, 987654)));
+			DB::table('voters')->where('id', '=', $value['id'])->update(array('passcode' => mt_rand(123456, 987654), 'voted' => null));
 		}
 
 		return true;

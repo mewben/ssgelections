@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'dev' => array('MewbenEDP', 'EDP-XT', 'Pi314'),
+	'dev' => array('MewbenEDP2', 'EDP-XT', 'Pi314'),
 
 ));
 

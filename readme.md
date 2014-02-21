@@ -6,13 +6,15 @@
 
 ### TODOS:
 1. &#x2713; Setup Laravel PHP Framework
-2. Configure environments
+2. &#x2713; Configure environments
 	* `bootstrap/start.php`
 	* `app/config/database.php`
-3. Install "zizaco/confide": "3.1.x"
-4. Create migrations
-5. Create Routes
-6. Segregate Data by semester code
+3. &#x2713; Install "zizaco/confide": "3.1.x"
+4. &#x2713; Create migrations
+5. &#x2713; Create Routes
+6. &#x2713; Segregate Data by semester code
+7. /statistics
+8. search voter
 
 
 ### DEVELOPMENT NOTES:

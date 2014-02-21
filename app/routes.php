@@ -54,14 +54,17 @@ Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($p
 
 
 // ETC
-Route::get('login', 'SessionsController@create');
-Route::post('login', 'SessionsController@store');
-Route::get('logout', 'SessionsController@logout');
+Route::get('/login', 'SessionsController@create');
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@logout');
 Route::resource('sessions', 'SessionsController');
 
 Route::get('/ongoing', function()
 {
 	return View::make('ongoing');
+});
+Route::get('/success', function() {
+	return View::make('success');
 });
 Route::any('/close-voting', 'UtilityController@closeVoting');
 Route::get('/results', 'UtilityController@results');
@@ -76,7 +79,7 @@ Route::group(array('before' => 'voterloggedin'), function() {
 
 
 Route::get('/test', function() {
-	if (App::environment('production')) 	return Redirect::to('/admin');
+	//if (App::environment('production')) 	return Redirect::to('/admin');
 
 	Confide::logout();
 	Session::flush();

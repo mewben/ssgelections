@@ -146,7 +146,7 @@ angular.module('ssg')
 		'Api',
 		'Notify',
 		function($rootScope, $scope, Api, Notify) {
-			$scope.steps = 'initialize';
+			$scope.steps = undefined;
 			$scope.zeroed = false;
 			$scope.printed = false;
 

@@ -115,7 +115,12 @@
 		</div><!-- /.modal -->
 
 		<?php if (App::environment('production')) : ?>
-			<?php echo HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') ?>
+			<?php echo HTML::script('assets/js/jquery-2.0.3.min.js') ?>
+			<?php echo HTML::script('assets/js/angular-1.2.12/angular.min.js') ?>
+			<?php echo HTML::script('assets/js/angular-1.2.12/angular-route.min.js') ?>
+			<?php echo HTML::script('assets/js/angular-1.2.12/angular-resource.min.js') ?>
+
+			<?php echo HTML::script('assets/js/admin.min.js') ?>
 
 		<?php else: ?>
 			<?php echo HTML::script('assets/js/jquery-2.0.3.min.js') ?>
@@ -134,7 +139,7 @@
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/modal.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tooltip.js') ?>
 			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/tab.js') ?>
-			<?php echo HTML::script('assets/less/bootstrap-3.1.0/js/button.js') ?>
+			<?php //echo HTML::script('assets/less/bootstrap-3.1.0/js/button.js') ?>
 
 			<?php echo HTML::script('ang/init.js') ?>
 			<?php echo HTML::script('ang/app.js') ?>

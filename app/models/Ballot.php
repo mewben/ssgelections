@@ -88,7 +88,8 @@ class Ballot extends BaseModel {
 	public static function initialize()
 	{
 		if (!Session::has('user.sem.id'))	throw new Exception("No semester Code selected.", 409);
-		// rezero count
+
+		// delete all votes
 		$model = static::where('sem_id', '=', Session::get('user.sem.id'))->delete();
 
 		// set 2 pass codes for close voting

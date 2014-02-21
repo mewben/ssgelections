@@ -14,7 +14,7 @@ class BallotsController extends BaseController {
 		$session = Session::get('voter');
 		$options = Ballot::getOptions();
 
-		return View::make('client', compact('options', 'session'));
+		return View::make('cast', compact('options', 'session'));
 	}
 
 	public function cast()
