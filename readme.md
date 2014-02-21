@@ -15,6 +15,7 @@
 6. &#x2713; Segregate Data by semester code
 7. /statistics
 8. search voter
+9. list of voters not voted
 
 
 ### DEVELOPMENT NOTES:

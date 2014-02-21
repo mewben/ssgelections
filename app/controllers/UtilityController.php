@@ -38,9 +38,26 @@ class UtilityController extends BaseController {
 
 	public function printWhat()
 	{
+
 		Session::put('user.count', Voter::count());
 		Session::put('user.date', date('Y-m-d H:i:s'));
 		$session = Session::get('user');
+
+		if (Input::get('w') == 'voted') {
+			$data = Voter::where('sem_id', '=', Session::get('user.sem.id'))
+					->where('voted', '=', true)
+					->orderBy('lname')
+					->get()->toArray();
+			return View::make('print.voted', compact('data', 'session'));
+		}
+
+		if (Input::get('w') == 'notvoted') {
+			$data = Voter::where('sem_id', '=', Session::get('user.sem.id'))
+					->whereNull('voted')
+					->orderBy('lname')
+					->get()->toArray();
+			return View::make('print.notvoted', compact('data', 'session'));
+		}
 
 		if (Input::get('w') == 'initial') {// print initial report
 			$data = Ballot::getResults();

@@ -36,21 +36,19 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function() {
 
 
 // ADMIN
-Route::get('/admin/logout', function() {
-	if (Input::get('w') == 'open_voting' AND Confide::user())
-		Configuration::set('open_voting', Session::get('user.sem.id'), Session::get('user.campus.id'));
+Route::get('/admin/login', 'UsersController@login');
+Route::post('/admin/login', 'UsersController@postlogin');
+Route::get('/admin/logout', 'UsersController@logout');
 
-	Confide::logout();
-	Session::flush();
-
-	return Redirect::to('/');
-});
 Route::get('/admin/{path?}', array('before' => 'auth|closedvoting', function ($path = null) {
 
 	$session = Session::get('user');
 	return View::make('layouts.admin', compact('session'));
 
 }))->where('path', '.*');
+
+
+
 
 
 // ETC
@@ -77,6 +75,9 @@ Route::group(array('before' => 'voterloggedin'), function() {
 });
 
 
+Route::get('/test2', function() {
+	print_r(Session::get('user'));
+});
 
 Route::get('/test', function() {
 	//if (App::environment('production')) 	return Redirect::to('/admin');

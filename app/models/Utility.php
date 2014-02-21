@@ -12,7 +12,7 @@ class Utility extends BaseModel {
 			Session::put('user.roles', Confide::user()->roles->toArray());
 
 			if ($sem = Configuration::get('current_semester', Session::get('user.campus_id')))
-				Session::put('user.sem', $sem->toArray());
+				Session::put('user.sem', Semester::findOrFail($sem['value'])->toArray());
 
 			if (Session::get('user.campus_id') == NULL) {
 				Session::put('user.campuses', (new Campus)->getList());
