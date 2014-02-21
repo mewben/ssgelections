@@ -4,6 +4,7 @@
 		<title>Results</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="refresh" content="3; url=/login">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<?php echo HTML::style('assets/css/client.css') ?>
 		<?php echo HTML::style('assets/css/font-awesome.css') ?>
@@ -17,8 +18,8 @@
 						<div class="ongoing text-center">
 							<div class="body">
 								<img src="assets/images/logo_bisu_small.png" alt="">
-								<h1><strong>SSG Election is Ongoing.</strong></h1>
-								<p>Access to administration panel is not allowed. Please wait until the election is over.</p>
+								<h1><strong>Vote Casted!</strong></h1>
+								<p>Your vote has been casted successfully. Thank you!</p>
 							</div>
 
 							<div class="footer">
