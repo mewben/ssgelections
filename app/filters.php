@@ -88,5 +88,6 @@ Route::filter('closedvoting', function()
 
 Route::filter('voterloggedin', function() {
 	if(!Session::has('voter'))
-		return Redirect::to('/login');
+		if (!Request::ajax())
+			return Redirect::to('/login');
 });

@@ -17,7 +17,7 @@
 					<h1>SSG Elections <small>{{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | {{ $session['semester']['sem'] }}</small></h1>
 				</div>
 			</div>
-			<p class="col-sm-4 text-right"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
+			<p class="col-sm-4 text-right"><i class="fa fa-barcode fa-fw fa-1x"></i> Voter ID: {{ $session['voter_id'] }} <i class="fa fa-user fa-fw fa-1x"></i> {{ $session['lname'] }}, {{ $session['fname'] }}</p>
 			<br>
 			<br>
 		</div>
@@ -98,6 +98,12 @@
 		window.data = <?php echo json_encode($options) ?>;
 
 		angular.module('ssg', [])
+			.config([
+				'$httpProvider',
+				function($httpProvider) {
+					$httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+				}
+			])
 			.controller('BallotCtrl', [
 				'$scope',
 				'$http',

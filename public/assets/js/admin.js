@@ -1580,6 +1580,7 @@ angular.module('ssg')
 				if(!$rootScope.item.status)	$rootScope.item.status = null;
 				if(!$rootScope.item.year)	$rootScope.item.year = null;
 				if(!$rootScope.item.college_id)	$rootScope.item.college_id = null;
+				console.log($rootScope.item);
 
 				if(!$rootScope.item.id)		Api($rootScope.table).save($rootScope.item, successCallback, Notify.errorCallback);
 				else						Api($rootScope.table).update({id: $rootScope.item.id}, $rootScope.item, successCallback, Notify.errorCallback);
