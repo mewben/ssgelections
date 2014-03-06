@@ -14,7 +14,8 @@ class CreateVotersTable extends Migration {
 	{
 		Schema::create('voters', function(Blueprint $table)
 		{
-			$table->bigInteger('id');
+			$table->bigIncrements('id');
+			$table->integer('voter_id')->unsigned();
 			$table->string('lname');
 			$table->string('fname');
 			$table->string('mname')->nullable();
@@ -26,7 +27,7 @@ class CreateVotersTable extends Migration {
 
 			$table->timestamps();
 
-			$table->primary('id');
+			$table->unique(array('voter_id', 'sem_id'));
 			$table->foreign('college_id')->references('id')->on('colleges');
 			$table->foreign('sem_id')->references('id')->on('semesters');
 		});

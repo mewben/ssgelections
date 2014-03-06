@@ -3,10 +3,10 @@
 class Voter extends BaseModel {
 
 	protected $table='voters';
-	protected $fillable = ['id', 'lname', 'fname', 'mname', 'college_id', 'year', 'sem_id', 'voted', 'passcode'];
+	protected $fillable = ['voter_id', 'lname', 'fname', 'mname', 'college_id', 'year', 'sem_id', 'voted', 'passcode'];
 
 	public static $rules = [
-		'id' => 'required',
+		'voter_id' => 'required',
 		'lname' => 'required',
 		'fname' => 'required',
 		'college_id' => 'required',
@@ -37,7 +37,7 @@ class Voter extends BaseModel {
 
 		// Extract data from csv
 		$data = Excel::load(Input::file('file')->getRealPath(), false, 'ISO-8859-1')->toArray();
-
+		
 		// prepare data
 		$newdata = [];
 		$colleges = [];
@@ -60,7 +60,7 @@ class Voter extends BaseModel {
 			}
 
 			$newdata = [];
-			$newdata['id'] = $value[1];
+			$newdata['voter_id'] = $value[1];
 			$newdata['lname'] = $value[2];
 			$newdata['fname'] = $value[3];
 			$newdata['mname'] = $value[4];
@@ -104,12 +104,12 @@ class Voter extends BaseModel {
 
 			//$obj->excel->getActiveSheet()->insertNewRowBefore($row+1,1);
 			$obj->excel->getActiveSheet()->setCellValue('A' . $row, $key+1)
-										 ->setCellValue('B' . $row, $value['id'])
+										 ->setCellValue('B' . $row, $value['voter_id'])
 										 ->setCellValue('C' . $row, $fullName)
 										 ->setCellValue('D' . $row, $value['college']['code'])
 										 ->setCellValue('E' . $row, $value['year'])
 										 ->setCellValue('G' . $row, 'LOGIN:')
-										 ->setCellValue('H' . $row, $value['id'])
+										 ->setCellValue('H' . $row, $value['voter_id'])
 										 ->setCellValue('I' . $row, 'PASSCODE:')
 										 ->setCellValue('J' . $row, $value['passcode']);
 

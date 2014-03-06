@@ -1578,6 +1578,8 @@ angular.module('ssg')
 
 			$rootScope.addItem = function() {
 				if(!$rootScope.item.status)	$rootScope.item.status = null;
+				if(!$rootScope.item.year)	$rootScope.item.year = null;
+				if(!$rootScope.item.college_id)	$rootScope.item.college_id = null;
 
 				if(!$rootScope.item.id)		Api($rootScope.table).save($rootScope.item, successCallback, Notify.errorCallback);
 				else						Api($rootScope.table).update({id: $rootScope.item.id}, $rootScope.item, successCallback, Notify.errorCallback);
@@ -1718,6 +1720,7 @@ angular.module('ssg')
 			}, true);
 
 			$scope.colleges = $rootScope.get('colleges');
+
 		}
 	])
 

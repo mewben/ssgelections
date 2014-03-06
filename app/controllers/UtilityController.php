@@ -13,7 +13,9 @@ class UtilityController extends BaseController {
 		try {
 			Voter::import();
 		} catch (Exception $e) {
-			return Redirect::to('/admin/voters')->with('errors', 'Database error! Check your data.');
+			//return $e->getMessage();
+			return Response::json($e->getMessage());
+			//return Redirect::to('/admin/voters')->with('errors', 'Database error! Check your data.');
 		}
 
 		Session::flash('info', "Import successful!");

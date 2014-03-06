@@ -21,7 +21,7 @@ class SessionsController extends BaseController {
 			return Redirect::back()->with('error', 'Numbers only!');
 
 		// check login first
-		$voter = Voter::with('semester')->where('id', '=', Input::get('id'))->where('passcode', '=', Input::get('passcode'))->first();
+		$voter = Voter::with('semester')->where('voter_id', '=', Input::get('id'))->where('passcode', '=', Input::get('passcode'))->first();
 		if (!$voter)
 			return Redirect::back()->with('error', 'Wrong Credentials!');
 
