@@ -23,13 +23,13 @@
 			<?php $fullName = $value['lname'] . ', ' . $value['fname'] . ', ' . $value['mname'][0] . '.'; ?>
 			<tr>
 				<td>{{$key + 1}}.</td>
-				<td>{{$value['id']}}</td>
+				<td>{{$value['voter_id']}}</td>
 				<td>{{$fullName}}</td>
 				<td>{{$value['college']['code']}}</td>
 				<td>{{$value['year']}}</td>
 				<td>&nbsp;</td>
 				<td><small><small>LOGIN:</small></small></td>
-				<td>{{$value['id']}}</td>
+				<td>{{$value['voter_id']}}</td>
 				<td><small><small>PASSCODE:</small></small></td>
 				<td>{{$value['passcode']}}</td>
 			</tr>

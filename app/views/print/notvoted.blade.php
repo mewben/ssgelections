@@ -19,7 +19,7 @@
 		@foreach($data as $k => $voter)
 			<tr>
 				<td>{{$k + 1}}</td>
-				<td>{{ $voter['id'] }}</td>
+				<td>{{ $voter['voter_id'] }}</td>
 				<td>{{ $voter['lname'] . ', ' . $voter['fname'] . ', ' . $voter['mname']}}</td>
 			</tr>
 		@endforeach
