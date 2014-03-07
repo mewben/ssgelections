@@ -31,6 +31,20 @@ class CreateVotersTable extends Migration {
 			$table->foreign('college_id')->references('id')->on('colleges');
 			$table->foreign('sem_id')->references('id')->on('semesters');
 		});
+
+		//
+		Schema::create('ballots', function(Blueprint $table)
+		{
+			$table->integer('voter_id')->unsigned();
+			$table->integer('candidate_id')->unsigned();
+			$table->integer('sem_id')->unsigned();
+			$table->timestamps();
+
+			$table->primary(array('voter_id', 'sem_id', 'candidate_id'));
+			$table->foreign('voter_id')->references('id')->on('voters');
+			$table->foreign('candidate_id')->references('id')->on('candidates');
+			$table->foreign('sem_id')->references('id')->on('semesters');
+		});
 	}
 
 	/**

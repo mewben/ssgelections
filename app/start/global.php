@@ -45,7 +45,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | shown, which includes a detailed stack trace during debug.
 |
 */
-
+/*
 App::error(function(Illuminate\Database\QueryException $exception, $code)
 {
 	switch ($exception->getCode()) {
@@ -60,7 +60,7 @@ App::error(function(Illuminate\Database\QueryException $exception, $code)
 			break;
 	}
 });
-
+*/
 
 App::error(function(Exception $exception, $code)
 {
@@ -72,7 +72,7 @@ App::error(function(Exception $exception, $code)
 		return Response::json($exception->getMessage(), 400);
 	} else {
 		//Log::error($exception);
-		//return Response::json($exception->getMessage(), 500);
+		return Response::json($exception->getMessage(), 500);
 	}
 });
 
