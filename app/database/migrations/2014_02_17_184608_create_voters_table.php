@@ -44,6 +44,8 @@ class CreateVotersTable extends Migration {
 			$table->dropForeign('voters_college_id_foreign');
 			$table->dropForeign('voters_sem_id_foreign');
 		});
+
+		Schema::drop('voters');
 	}
 
 }
