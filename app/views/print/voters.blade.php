@@ -28,7 +28,7 @@
 				<td>{{$value['college']['code']}}</td>
 				<td>{{$value['year']}}</td>
 				<td>&nbsp;</td>
-				<td><small><small>LOGIN:</small></small></td>
+				<td><small><small>{{$key+1}}. VOTER ID:</small></small></td>
 				<td>{{$value['voter_id']}}</td>
 				<td><small><small>PASSCODE:</small></small></td>
 				<td>{{$value['passcode']}}</td>
