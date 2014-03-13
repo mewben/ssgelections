@@ -108,10 +108,11 @@ class Voter extends BaseModel {
 										 ->setCellValue('C' . $row, $fullName)
 										 ->setCellValue('D' . $row, $value['college']['code'])
 										 ->setCellValue('E' . $row, $value['year'])
-										 ->setCellValue('G' . $row, 'LOGIN:')
-										 ->setCellValue('H' . $row, $value['voter_id'])
-										 ->setCellValue('I' . $row, 'PASSCODE:')
-										 ->setCellValue('J' . $row, $value['passcode']);
+										 ->setCellValue('G' . $row, $key+1)
+										 ->setCellValue('H' . $row, 'VOTERID:')
+										 ->setCellValue('I' . $row, $value['voter_id'])
+										 ->setCellValue('J' . $row, 'PASSCODE:')
+										 ->setCellValue('K' . $row, $value['passcode']);
 
 		}
 
