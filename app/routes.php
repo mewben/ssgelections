@@ -67,7 +67,7 @@ Route::get('/success', function() {
 Route::any('/close-voting', 'UtilityController@closeVoting');
 Route::get('/results', 'UtilityController@results');
 
-Route::group(array('before' => 'voterloggedin2'), function() {
+Route::group(array('before' => 'voterloggedin'), function() {
 
 	Route::get('/', 'BallotsController@index');
 	Route::post('/cast', 'BallotsController@cast');

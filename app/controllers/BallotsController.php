@@ -11,16 +11,6 @@ class BallotsController extends BaseController {
 
 	public function index()
 	{
-		$voter = Voter::with('semester')->where('voter_id', '=', 181068)->where('passcode', '=', 958180)->first();
-		
-		$voter = $voter->toArray();
-		
-		// get open voting to get the sem_id and campus_id
-		
-		// successful
-		Session::put('voter', $voter);
-
-
 		$session = Session::get('voter');
 		$options = Ballot::getOptions();
 
