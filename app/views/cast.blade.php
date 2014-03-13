@@ -22,7 +22,7 @@
 			<br>
 		</div>
 
-		<div class="row ballot-body">
+		<div class="row ballot-body" data-ng-show="mode==undefined">
 			<form id="ballot" data-ng-submit="submit()">
 				@foreach($options as $positions)
 					<div class="postOptions col-sm-12" <?php echo $positions['num_winner'] == 1 ? 'radio' : 'check="'. $positions['num_winner'] . '"' ?>>
@@ -55,25 +55,27 @@
 			</form>
 		</div>
 
-		<div id="ballotConfirm">
-			<div class="heading text-center">
-				<img src="assets/images/logo_bisu_small.png" alt="BISU" width="50px">
-				<h3>SSG Election</h3>
-				<p><strong>Bohol Island State University</strong></p>
-				<small>SY: {{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | Semester: {{ $session['semester']['sem'] }}</small>
+		<div id="ballotConfirm" data-ng-show="mode=='review'">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="heading text-center">
+						<h3>Summary of Votes</h3>
+					</div>
+					<table class="confirm table">
+						<tr data-ng-repeat="position in data">
+							<td valign="top" align="right"><strong>@{{position.name}}</strong></td>
+							<td align="left">
+								<div data-ng-repeat="option in position.options" data-ng-if="option.active">
+									- @{{option.name}}
+								</div>
+							</td>
+						</tr>
+					</table>
+					<hr>
+					<button type="button" class="btn btn-lg btn-default" data-ng-click="mode=null"><i class="fa fa-fw fa-times"></i> Change</button>
+				    <button type="button" data-ng-click="confirm()" class="btn btn-lg btn-warning"><i class="fa fa-fw fa-check"></i> Confirm &amp; Log out</button>
+				</div>
 			</div>
-			<table class="confirm">
-				<tr data-ng-repeat="position in data">
-					<td valign="top"><strong>@{{position.name}}</strong></td>
-					<td>
-						<div data-ng-repeat="option in position.options" data-ng-if="option.active">
-							@{{option.name}}
-						</div>
-					</td>
-				</tr>
-			</table>
-			<button type="button" class="btn btn-lg btn-danger" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Change</button>
-		    <button type="button" data-ng-click="confirm()" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-check"></i> Confirm &amp; Log out</button>
 		</div>
 	</div> <!-- end main -->
 
@@ -98,6 +100,7 @@
 				function ($scope, $http, $window) {
 					$scope.data = window.data;
 					$scope.item = [];
+					$scope.mode = null;
 
 					$scope.submit = function() {
 						$scope.item = [];
@@ -111,7 +114,8 @@
 									v2.active = true;
 							});
 						});
-						$('#ballotConfirm').modal();
+						//$('#ballotConfirm').modal();
+						$scope.mode = 'review';
 					};
 
 					$scope.confirm = function() {
@@ -120,7 +124,7 @@
 								$window.location.href = '/success';
 							})
 							.error(function(err) {
-								alert(err.error.message);
+								alert(err);
 							});
 					};
 				}
