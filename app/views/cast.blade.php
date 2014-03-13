@@ -55,39 +55,26 @@
 			</form>
 		</div>
 
-		<div class="modal fade" id="ballotConfirm" tabindex="-1" role="dialog" aria-labelledby="ballotConfirmLabel" aria-hidden="true">
-			<div class="modal-dialog">
-		    	<div class="modal-content">
-		    		<div class="modal-header">
-		    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		    			<h4 class="modal-title"><strong>Ballot Confirmation</strong></h4>
-		    		</div>
-		    		<div class="modal-body">
-		    			<div class="heading text-center">
-		    				<img src="assets/images/logo_bisu_small.png" alt="BISU" width="50px">
-		    				<h3>SSG Election</h3>
-		    				<p><strong>Bohol Island State University</strong></p>
-		    				<small>SY: {{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | Semester: {{ $session['semester']['sem'] }}</small>
-		    			</div>
-		        		<table class="confirm">
-		        			<tr data-ng-repeat="position in data">
-		        				<td valign="top"><strong>@{{position.name}}</strong></td>
-		        				<td>
-		        					<div data-ng-repeat="option in position.options" data-ng-if="option.active">
-		        						@{{option.name}}
-		        					</div>
-		        				</td>
-		        			</tr>
-		        		</table>
-		      		</div>
-		      		<div class="modal-footer">
-		        		<button type="button" class="btn btn-lg btn-danger" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Change</button>
-		        		<button type="button" data-ng-click="confirm()" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-check"></i> Confirm &amp; Log out</button>
-		      		</div>
-		    	</div><!-- /.modal-content -->
-		  	</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-
+		<div id="ballotConfirm">
+			<div class="heading text-center">
+				<img src="assets/images/logo_bisu_small.png" alt="BISU" width="50px">
+				<h3>SSG Election</h3>
+				<p><strong>Bohol Island State University</strong></p>
+				<small>SY: {{ $session['semester']['sy'] }}-{{ $session['semester']['sy'] + 1 }} | Semester: {{ $session['semester']['sem'] }}</small>
+			</div>
+			<table class="confirm">
+				<tr data-ng-repeat="position in data">
+					<td valign="top"><strong>@{{position.name}}</strong></td>
+					<td>
+						<div data-ng-repeat="option in position.options" data-ng-if="option.active">
+							@{{option.name}}
+						</div>
+					</td>
+				</tr>
+			</table>
+			<button type="button" class="btn btn-lg btn-danger" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Change</button>
+		    <button type="button" data-ng-click="confirm()" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-check"></i> Confirm &amp; Log out</button>
+		</div>
 	</div> <!-- end main -->
 
 	<?php echo HTML::script('assets/js/jquery-2.0.3.min.js') ?>
