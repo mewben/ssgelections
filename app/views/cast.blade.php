@@ -34,7 +34,7 @@
 										<span>{{ $k + 1 }}</span>
 										<p>
 											<strong>{{ $candidate['name'] }}</strong>
-											<div><small>{{ $candidate['party']['name'] }}</small></div>
+											<div><small>{{ $candidate['party']['code'] }}</small></div>
 										</p>
 										<i class="fa fa-check fa-2x checkmark"></i>
 									</button>
